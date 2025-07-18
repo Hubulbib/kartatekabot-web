@@ -3,6 +3,7 @@
 }
 .coffeeSelect > div {
   border-radius: 15px;
+  box-shadow: none;
 }
 .coffeeSelect > div > div {
   background-color: var(--primary-color);
