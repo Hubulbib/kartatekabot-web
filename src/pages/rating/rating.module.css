@@ -2,14 +2,7 @@
   margin-bottom: 10px;
 }
 .coffeeSelect > div {
-  background-color: transparent;
   border-radius: 15px;
-}
-.coffeeSelect > div > div {
-  background-color: transparent;
-}
-.coffeeSelect > div > div > div {
-  background-color: transparent;
 }
 
 .coffeeList {
