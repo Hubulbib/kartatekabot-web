@@ -1,0 +1,54 @@
+@import url("https://fonts.googleapis.com/css2?family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap");
+
+:root {
+  font-family: Inter, sans-serif;
+
+  font-weight: 400;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+
+  --primary-color: #262626;
+  --secondary-color: #f5f4f2;
+  --accent-color: white;
+  --extra-color: #dbc3fd;
+  --bage-color: #3f93fa;
+  --text-color: white;
+  --bg-btn-color: #c7fbdd;
+}
+
+html,
+body {
+  width: 100%;
+  background-color: var(--primary-color);
+  margin: 0;
+}
+
+#root {
+  width: 100vw;
+  padding: 0;
+}
+
+html {
+  width: 100vw;
+}
+
+body,
+#root {
+  overflow-x: hidden;
+}
+
+body * {
+  font-family: Inter, sans-serif;
+}
+
+.app {
+  overflow-y: scroll;
+  height: 100%;
+  padding: 10px;
+}
+
+.main-content > * {
+  width: 100%;
+}
