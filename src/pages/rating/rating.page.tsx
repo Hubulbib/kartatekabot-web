@@ -32,18 +32,20 @@ export const RatingPage = observer(() => {
         </Select>
       </Section>
       <List className={styles.coffeeList}>
-        {coffeeList.map((el, ind) => (
-          <Card key={el.name + el.address} className={styles.coffeeCard}>
-            <CardCell className={styles.coffeeCardText}>
-              <div className={styles.coffeeName}>
-                <span>№{ind + 1}</span> {el.name}
-              </div>
-              <div className={styles.coffeeRow}>
-                <span className={styles.coffeeIcon}>⭐</span>
-                <span className={styles.coffeeLabel}>Рейтинг:</span>
-                <span className={styles.coffeeValue}>{el.rating}</span>
-              </div>
-              <div className={styles.coffeeRow}>
+        {coffeeList
+          .sort((a, b) => b.rating - a.rating)
+          .map((el, ind) => (
+            <Card key={el.name + el.address} className={styles.coffeeCard}>
+              <CardCell className={styles.coffeeCardText}>
+                <div className={styles.coffeeName}>
+                  <span>№{ind + 1}</span> {el.name}
+                </div>
+                <div className={styles.coffeeRow}>
+                  <span className={styles.coffeeIcon}>⭐</span>
+                  <span className={styles.coffeeLabel}>Рейтинг:</span>
+                  <span className={styles.coffeeValue}>{el.rating}</span>
+                </div>
+                {/* <div className={styles.coffeeRow}>
                 <span className={styles.coffeeIcon}>💰</span>
                 <span className={styles.coffeeLabel}>Ценовая категория:</span>
                 <span className={styles.coffeeValue}>{el.price_category}</span>
@@ -54,15 +56,15 @@ export const RatingPage = observer(() => {
                 <span className={styles.coffeeValue}>
                   {el.pluses.join(", ")}
                 </span>
-              </div>
-              <div className={styles.coffeeRow}>
-                <span className={styles.coffeeIcon}>📍</span>
-                <span className={styles.coffeeLabel}>Адрес:</span>
-                <span className={styles.coffeeValue}>{el.address}</span>
-              </div>
-            </CardCell>
-          </Card>
-        ))}
+              </div> */}
+                <div className={styles.coffeeRow}>
+                  <span className={styles.coffeeIcon}>📍</span>
+                  <span className={styles.coffeeLabel}>Адрес:</span>
+                  <span className={styles.coffeeValue}>{el.address}</span>
+                </div>
+              </CardCell>
+            </Card>
+          ))}
       </List>
     </div>
   );
