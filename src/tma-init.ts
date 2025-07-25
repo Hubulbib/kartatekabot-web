@@ -2,7 +2,6 @@ import {
   setDebug,
   backButton,
   miniApp,
-  themeParams,
   initData,
   viewport,
   init,
@@ -19,7 +18,6 @@ export const initTGMiniApp = (debug: boolean): void => {
 
   backButton.mount();
   miniApp.mountSync();
-  themeParams.mountSync();
   initData.restore();
   viewport.expand();
   void viewport
@@ -32,5 +30,4 @@ export const initTGMiniApp = (debug: boolean): void => {
     });
 
   miniApp.bindCssVars();
-  themeParams.bindCssVars();
 };

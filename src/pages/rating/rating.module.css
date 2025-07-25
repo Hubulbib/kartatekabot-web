@@ -11,6 +11,12 @@
 .coffeeSelect > div > div > div {
   background-color: var(--primary-color);
 }
+.coffeeSelect h6 {
+  background-color: var(--primary-color);
+}
+.coffeeSelect select {
+  color: var(--accent-color);
+}
 
 .coffeeList {
   display: flex;
@@ -21,6 +27,7 @@
   margin-bottom: 16px; /* Отступ между карточками */
   width: 100%;
   border: 3px dashed var(--primary-color);
+  background-color: var(--secondary-color);
   transition: all 0.2s;
 }
 .coffeeCard:hover {
