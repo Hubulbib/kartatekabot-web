@@ -14,7 +14,7 @@ export const NavBar = () => {
 
   if (location.pathname === "/") {
     return (
-      <nav className={styles["nav"]}>
+      <nav id="nav" className={styles["nav"]}>
         <h1>{getTitle()}</h1>
         <h5>{}</h5>
       </nav>

@@ -32,7 +32,7 @@ export const initTGMiniApp = (debug: boolean): void => {
     document.getElementById("app")?.classList?.add("mobile-content");
 
     if (lp.tgWebAppPlatform.includes("ios")) {
-      document.getElementById("app")?.classList?.add("ios-content");
+      document.getElementById("nav")?.classList?.add("ios-content");
     }
   }
 
