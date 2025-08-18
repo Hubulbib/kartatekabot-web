@@ -59,7 +59,6 @@ body * {
 .mobile-body {
   overflow: hidden;
   height: 100vh;
-  padding-top: 20px;
 }
 
 .mobile-wrap {
@@ -73,5 +72,6 @@ body * {
 }
 
 .mobile-content {
+  padding-top: 20px;
   height: calc(100% + 1px);
 }
