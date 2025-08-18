@@ -9,9 +9,6 @@ import { OrderStore } from "./stores/order.store.ts";
 import { ProductStore } from "./stores/product.store.ts";
 import { UserStore } from "./stores/user.store.ts";
 
-import "@telegram-apps/telegram-ui/dist/styles.css";
-import { AppRoot } from "@telegram-apps/telegram-ui";
-
 initTGMiniApp(!!import.meta.env.VITE_DEBUG);
 
 const cartStore = new CartStore();
@@ -21,11 +18,9 @@ const productStore = new ProductStore();
 const userStore = new UserStore();
 
 createRoot(document.getElementById("root")!).render(
-  <AppRoot>
-    <Context.Provider
-      value={{ cartStore, catalogStore, orderStore, productStore, userStore }}
-    >
-      <App />
-    </Context.Provider>
-  </AppRoot>
+  <Context.Provider
+    value={{ cartStore, catalogStore, orderStore, productStore, userStore }}
+  >
+    <App />
+  </Context.Provider>
 );

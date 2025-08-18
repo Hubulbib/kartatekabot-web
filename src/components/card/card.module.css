@@ -1,0 +1,30 @@
+.coffeeCard {
+  margin-bottom: 16px; /* Отступ между карточками */
+  max-width: 100%;
+  border: 3px dashed var(--extra-color);
+  background-color: transparent;
+  transition: all 0.2s;
+  border-radius: 10px;
+  padding: 10px;
+}
+.coffeeCard:hover {
+  border-color: var(--extra-color);
+}
+
+.coffeeName {
+  font-weight: bold;
+  font-size: 1.1em;
+  margin-bottom: 4px;
+}
+
+.coffeeName > span {
+  color: var(--extra-color);
+}
+
+.coffeeCardText > div {
+  color: var(--secondary-color);
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  gap: 10px;
+}

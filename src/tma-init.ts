@@ -5,6 +5,8 @@ import {
   initData,
   viewport,
   init,
+  retrieveLaunchParams,
+  postEvent,
 } from "@telegram-apps/sdk-react";
 
 export const initTGMiniApp = (debug: boolean): void => {
@@ -15,6 +17,22 @@ export const initTGMiniApp = (debug: boolean): void => {
   if (!backButton.isSupported() || !miniApp.isSupported()) {
     throw new Error("ERR_NOT_SUPPORTED");
   }
+
+  var lp = retrieveLaunchParams();
+
+  // Some versions of Telegram don't need the classes above.
+  if (
+    ["macos", "tdesktop", "weba", "web", "webk"].includes(lp.tgWebAppPlatform)
+  ) {
+    return;
+  }
+
+  // Expand the application.
+  postEvent("web_app_expand");
+
+  document.body.classList.add("mobile-body");
+  document.getElementById("root")?.classList?.add("mobile-wrap");
+  document.getElementById("app")?.classList?.add("mobile-content");
 
   backButton.mount();
   miniApp.mountSync();

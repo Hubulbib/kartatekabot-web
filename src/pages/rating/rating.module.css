@@ -1,80 +1,18 @@
-.coffeeSelect {
-  margin-bottom: 10px;
-}
-.coffeeSelect > div {
-  border-radius: 15px;
-  box-shadow: none;
-}
-.coffeeSelect > div > div {
-  background-color: var(--primary-color);
-}
-.coffeeSelect > div > div > div {
-  background-color: var(--primary-color);
-}
-.coffeeSelect h6 {
-  background-color: var(--primary-color);
-}
-.coffeeSelect select {
-  color: var(--accent-color);
-}
-
 .coffeeList {
   display: flex;
   flex-direction: column;
+  justify-content: flex-start;
+  list-style: none;
+  padding: 20px 0;
+  margin: 0;
 }
 
-.coffeeCard {
-  margin-bottom: 16px; /* Отступ между карточками */
-  width: 100%;
-  border: 3px dashed var(--primary-color);
-  background-color: var(--secondary-color);
-  transition: all 0.2s;
-}
-.coffeeCard:hover {
-  border-color: var(--extra-color);
-}
-
-.coffeeName {
-  font-weight: bold;
-  font-size: 1.1em;
-  margin-bottom: 4px;
-}
-
-.coffeeName > span {
-  color: var(--extra-color);
-}
-
-.coffeeCardText > div {
-  color: var(--secondary-color);
+.coffeeSelect {
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  gap: 10px;
 }
-
-.coffeeRow {
-  display: flex;
-  align-items: flex-start;
-  gap: 6px;
-  font-size: 0.98em;
-  margin-bottom: 2px;
-  flex-wrap: wrap;
-  white-space: normal;
-}
-
-.coffeeIcon {
-  font-size: 1.1em;
-  margin-right: 2px;
-}
-
-.coffeeLabel {
-  color: var(--extra-color);
-  font-weight: 500;
-  margin-right: 2px;
-}
-
-.coffeeValue {
+.coffeeSelect > h2 {
   color: var(--secondary-color);
-  font-weight: 400;
-  word-break: break-word; /* переносит только длинные слова */
-  white-space: normal;
+  font-size: 16px;
 }

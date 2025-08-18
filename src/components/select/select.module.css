@@ -1,0 +1,43 @@
+.selectWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.selectValue {
+  width: 100%;
+  background: transparent;
+  border: none;
+  border-radius: 10px;
+  padding: 16px 48px 16px 16px;
+  color: var(--accent-color);
+  font-size: 20px;
+  outline: none;
+  box-shadow: 0 0 0 1px var(--secondary-color);
+  box-sizing: border-box;
+  transition: all 0.2s;
+  appearance: none; /* убирает стандартную стрелку */
+  -webkit-appearance: none;
+  -moz-appearance: none;
+}
+.selectValue:focus {
+  box-shadow: 0 0 0 2px var(--secondary-color);
+}
+.selectValue option {
+  color: var(--accent-color);
+  background: var(--primary-color);
+}
+
+.selectArrow {
+  position: absolute;
+  right: 20px;
+  top: 50%;
+  transform: translateY(-50%) rotate(0deg);
+  pointer-events: none;
+  font-size: 22px;
+  color: var(--accent-color);
+  transition: transform 0.2s;
+}
+
+.selectWrapper:focus-within .selectArrow {
+  transform: translateY(-50%) rotate(180deg);
+}

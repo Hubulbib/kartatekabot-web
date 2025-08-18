@@ -6,7 +6,7 @@ import { observer } from "mobx-react-lite";
 function App() {
   return (
     <BrowserRouter>
-      <div className="app">
+      <div className="app" id="app">
         <NavBar />
         <main className="main-content">
           <Routes>
