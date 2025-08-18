@@ -4,6 +4,11 @@
   padding: 10px;
 }
 
+.nav > img {
+  width: 100px;
+  margin-bottom: 10px;
+}
+
 .nav > h1 {
   color: var(--secondary-color);
 }

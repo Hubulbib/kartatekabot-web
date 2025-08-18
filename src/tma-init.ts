@@ -30,10 +30,6 @@ export const initTGMiniApp = (debug: boolean): void => {
     document.body.classList.add("mobile-body");
     document.getElementById("root")?.classList?.add("mobile-wrap");
     document.getElementById("app")?.classList?.add("mobile-content");
-
-    if (["ios"].includes(lp.tgWebAppPlatform)) {
-      document.getElementById("root")?.classList?.add("ios-content");
-    }
   }
 
   backButton.mount();
