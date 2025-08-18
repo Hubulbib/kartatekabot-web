@@ -22,17 +22,19 @@ export const initTGMiniApp = (debug: boolean): void => {
 
   // Some versions of Telegram don't need the classes above.
   if (
-    ["macos", "tdesktop", "weba", "web", "webk"].includes(lp.tgWebAppPlatform)
+    !["macos", "tdesktop", "weba", "web", "webk"].includes(lp.tgWebAppPlatform)
   ) {
-    return;
+    // Expand the application.
+    postEvent("web_app_expand");
+
+    document.body.classList.add("mobile-body");
+    document.getElementById("root")?.classList?.add("mobile-wrap");
+    document.getElementById("app")?.classList?.add("mobile-content");
+
+    if (lp.tgWebAppPlatform.includes("ios")) {
+      document.getElementById("app")?.classList?.add("ios-content");
+    }
   }
-
-  // Expand the application.
-  postEvent("web_app_expand");
-
-  document.body.classList.add("mobile-body");
-  document.getElementById("root")?.classList?.add("mobile-wrap");
-  document.getElementById("app")?.classList?.add("mobile-content");
 
   backButton.mount();
   miniApp.mountSync();

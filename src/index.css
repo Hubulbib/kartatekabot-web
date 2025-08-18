@@ -72,6 +72,9 @@ body * {
 }
 
 .mobile-content {
-  padding-top: 20px;
   height: calc(100% + 1px);
+}
+
+.ios-content {
+  padding-top: 20px;
 }
