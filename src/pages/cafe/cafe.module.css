@@ -1,0 +1,102 @@
+.cafePage {
+}
+.cafePage > div:first-child {
+  display: flex;
+  justify-content: center;
+  margin-bottom: 10px;
+}
+.cafePage > div:first-child img {
+  width: 50%;
+  border-radius: 20px;
+  border: 3px solid var(--accent-color);
+}
+.cafePage > h1 {
+  font-size: 30px;
+  color: var(--accent-color);
+  text-align: center;
+  letter-spacing: 1px;
+}
+.cafePage > h4 {
+  font-size: 16px;
+  color: var(--muted-color);
+  text-align: center;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+.cafePage > p {
+  background-color: var(--accent-color);
+  width: fit-content;
+  text-align: center;
+  padding: 10px 5px;
+  border-radius: 10px;
+}
+.cafeLocationList {
+  padding: 10px 0;
+  display: flex;
+  align-items: stretch;
+  width: 100%;
+  gap: 20px;
+}
+.cafeLocationList > div {
+  flex: 1;
+  min-width: 0;
+  background-color: var(--accent-color);
+  border-radius: 10px;
+  padding: 10px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-around;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+.cafeLocationList > div:hover,
+.cafeLocationList > div:active {
+  background-color: var(--extra-color);
+}
+.cafeLocationList > div:nth-child(2):hover h6,
+.cafeLocationList > div:nth-child(2):active h6 {
+  background-color: var(--accent-color);
+}
+.cafeLocationList > div:first-child h4 {
+  font-size: 20px;
+}
+.cafeLocationList > div:first-child h6 {
+  font-size: 12px;
+  color: var(--muted-color);
+}
+.cafeLocationList > div:nth-child(2) h4 {
+  font-size: 16px;
+  margin-bottom: 5px;
+}
+.cafeLocationList > div:nth-child(2) h6 {
+  transition: background-color 0.2s;
+  background-color: var(--extra-color);
+  width: fit-content;
+  padding: 5px 10px;
+  border-radius: 5px;
+}
+.cafeLocationList > div:nth-child(2) h6 span {
+  font-size: 14px;
+}
+
+.cafePageButton {
+  display: flex;
+  justify-content: center;
+}
+.cafePageButton button {
+  cursor: pointer;
+  background-color: var(--extra-color);
+  width: 100%;
+  border-radius: 10px;
+  padding: 20px 10px;
+  outline: none;
+  border: 2px solid transparent;
+  transition: background-color 0.2s;
+}
+.cafePageButton button:hover {
+  background-color: var(--primary-color);
+  border: 2px solid var(--extra-color);
+  color: var(--accent-color);
+}

@@ -1,0 +1,17 @@
+.navButton {
+  padding: 10px;
+  border: 2px solid var(--accent-color);
+  border-radius: 10px;
+  transition: background-color 0.2s;
+  cursor: pointer;
+}
+
+.navButton:focus,
+.navButton:active {
+  background-color: var(--background-color);
+}
+
+.navButton > img {
+  height: 30px;
+  width: 30px;
+}

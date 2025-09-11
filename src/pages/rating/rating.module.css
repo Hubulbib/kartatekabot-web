@@ -1,3 +1,9 @@
+.ratingToggle {
+  margin: 10px 0;
+  display: flex;
+  justify-content: center;
+}
+
 .coffeeList {
   display: flex;
   flex-direction: column;

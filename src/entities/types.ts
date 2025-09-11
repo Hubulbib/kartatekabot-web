@@ -1,65 +1,54 @@
-export type Product = {
+export type Criteria = {
+  taste: number;
+  atmosphere: number;
+  speed: number;
+  aroma: number;
+};
+
+export type City = {
+  id: number;
+  name: string;
+};
+
+export type User = {
+  id: number;
+  tgId: number;
+  criteria: Criteria;
+  city: City;
+  cafe: Cafe[];
+};
+
+export type Review = {
+  id: number;
+  text: string;
+  criteria: Criteria;
+  user: User;
+  cafe: Cafe;
+  createdAt: Date;
+  updatedAt: Date;
+  updateCount: number;
+};
+
+export type Cafe = {
   id: number;
   name: string;
   description: string;
-  price: number;
-  subscriptionPrice: number;
-  imageUrl: string;
-  available: boolean;
-  category: Category;
+  avatar: string;
+  address: string[];
+  owner: User;
+  city: City;
+  reviews: Review[];
+
+  score?: number;
 };
 
-export type Category = {
-  id: number;
-  name: string;
-  products: Product[];
-};
+export type CriteriaOrder = { key: keyof Criteria; label: string }[];
 
-export type CartItem = {
-  id: number;
-  cartId: number;
-  productId: number;
-  product: Product;
-  quantity: number;
-  createdAt: Date;
-  updatedAt: Date;
-};
+export const initialCriteria: CriteriaOrder = [
+  { key: "aroma", label: "Аромат" },
+  { key: "atmosphere", label: "Атмосфера" },
+  { key: "speed", label: "Скорость" },
+  { key: "taste", label: "Вкус" },
+];
 
-export enum OrderStatus {
-  PROCESSING = "Обработка",
-  ACCEPTED = "Принят",
-  ASSEMBLING = "Сборка",
-  TRANSFERRED_TO_COURIER = "Передан курьеру",
-  IN_TRANSIT = "В пути",
-  DELIVERED = "Доставлен",
-  CANCELED = "Отменен",
-}
-
-export enum PayType {
-  CASH = "Наличные",
-  ONLINE = "Онлайн",
-}
-
-export type Order = {
-  id: number;
-  orderNumber: string;
-  status: OrderStatus;
-  totalAmount: number;
-  deliveryAddress: string;
-  residentialComplex: string;
-  customerPhone: string;
-  customerName: string;
-  paymentId: string;
-  payType: PayType;
-  items: OrderItem[];
-  createdAt: Date;
-  updatedAt: Date;
-};
-
-export type OrderItem = {
-  id: number;
-  quantity: number;
-  price: number;
-  order: Order;
-  product: Product;
-};
+export const valuesDesc = [1.7, 1.5, 1.3, 1.0];

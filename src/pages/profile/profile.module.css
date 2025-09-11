@@ -1,0 +1,65 @@
+.profilePage {
+  padding: 0 10px;
+  box-sizing: border-box;
+}
+
+.profileUser {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.profileUser img {
+  width: 50%;
+  border-radius: 20px;
+  border: 3px solid var(--accent-color);
+}
+.profileUser h3 {
+  color: var(--accent-color);
+}
+
+.profileCity {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+.profileCity h3 {
+  font-size: 25px;
+  font-weight: 700;
+  color: Var(--accent-color);
+}
+
+.profileCriteria {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  margin-bottom: 20px;
+}
+
+.profileCriteria button {
+  cursor: pointer;
+  width: 50%;
+  outline: none;
+  background-color: var(--extra-color);
+  border: none;
+  padding: 10px 0;
+  border-radius: 10px;
+  font-size: 20px;
+  font-weight: 700;
+  color: var(--primary-color);
+  transition: all 0.2s;
+}
+.profileCriteria button:hover {
+  background-color: var(--background-color);
+}
+.profileCriteria button:disabled {
+  background-color: var(--accent-color);
+}
+
+.profileCriteria > h3 {
+  font-size: 25px;
+  color: var(--accent-color);
+  margin-bottom: 10px;
+}

@@ -2,13 +2,22 @@
   width: 100%;
   text-align: center;
   padding: 10px;
+  display: grid;
+  grid-template-columns: 1fr 6fr 1fr;
+  grid-template-rows: 1fr;
+  grid-column-gap: 20px;
+  grid-row-gap: 0px;
+  align-items: center;
+  margin-bottom: 10px;
+  box-sizing: border-box;
 }
 
 .nav > img {
   width: 100px;
-  margin-bottom: 10px;
+  height: 30px;
 }
 
 .nav > h1 {
   color: var(--secondary-color);
+  font-size: 26px;
 }

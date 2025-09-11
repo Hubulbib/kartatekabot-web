@@ -1,0 +1,43 @@
+.welcomePage {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background: #f3f4f6;
+  padding: 10px;
+}
+
+.welcomeStep h2 {
+  color: var(--accent-color);
+  text-align: center;
+  font-size: 24px;
+  margin-bottom: 30px;
+}
+.welcomeStep h2 span {
+  color: var(--extra-color);
+  font-weight: bold;
+  font-size: 30px;
+}
+.welcomeStep h3 {
+  padding: 5px 0;
+  color: var(--accent-color);
+  text-align: center;
+  margin-bottom: 10px;
+}
+.welcomeStep > div {
+  display: flex;
+  justify-content: center;
+}
+.welcomeStep button {
+  margin: 10px 0;
+  background: var(--background-color);
+  color: var(--accent-color);
+  border: none;
+  padding: 10px 20px;
+  width: 33%;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.welcomeStep button:hover {
+  background: var(--extra-color);
+}

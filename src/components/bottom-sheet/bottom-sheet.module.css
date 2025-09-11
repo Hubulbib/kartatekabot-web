@@ -1,0 +1,74 @@
+/* components/bottom-sheet/bottom-sheet.module.css */
+.overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  transition: opacity 0.3s ease;
+}
+
+.overlay.closing {
+  opacity: 0;
+}
+
+.sheet {
+  background: white;
+  width: 100%;
+  max-width: 100vw;
+  height: 100vh;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+  padding: 20px;
+  box-sizing: border-box;
+  animation: slideUp 0.3s ease-out;
+}
+
+.sheet.slideDown {
+  animation: slideDown 0.3s ease-in;
+}
+
+.header {
+  display: flex;
+  justify-content: flex-end;
+  margin-bottom: 5px;
+}
+
+.closeButton {
+  background: none;
+  border: none;
+  font-size: 40px;
+  background-color: var(--muted-color);
+  padding: 0 15px;
+  border-radius: 20px;
+  padding-bottom: 5px;
+  cursor: pointer;
+}
+
+.content {
+  height: calc(100% - 40px);
+  overflow-y: auto;
+}
+
+@keyframes slideUp {
+  from {
+    transform: translateY(100%);
+  }
+  to {
+    transform: translateY(0);
+  }
+}
+
+@keyframes slideDown {
+  from {
+    transform: translateY(0);
+  }
+  to {
+    transform: translateY(100%);
+  }
+}

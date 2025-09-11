@@ -1,38 +1,40 @@
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styles from "./rating.module.css";
 import { observer } from "mobx-react-lite";
 import { Context } from "../../context/context";
-import { AppData } from "../../data";
-import { Select } from "../../components/select/select.component";
 import { Card } from "../../components/card/card.component";
+import { Toggle } from "../../components/toggle/toggle.component";
 
 export const RatingPage = observer(() => {
-  const {} = useContext(Context);
+  const {
+    ratingStore: { getPersonalRating, personalRating, getRating, rating },
+    userStore: { user, getUser },
+  } = useContext(Context);
 
-  const cityKeys = Object.keys(AppData) as Array<keyof typeof AppData>;
-  const [city, setCity] = useState<keyof typeof AppData>(cityKeys[0]);
-  const coffeeList = AppData[city].places;
+  const [toggle, setToggle] = useState<"main" | "personal">("main");
+
+  useEffect(() => {
+    if (user?.city) {
+      getRating(user?.city?.name);
+      getPersonalRating(user?.city?.name);
+    }
+  }, [user]);
+
+  useEffect(() => {
+    getUser();
+  }, []);
 
   return (
     <div className={styles.ratingPage}>
-      <section className={styles.coffeeSelect}>
-        <h2>Город</h2>
-        <Select
-          city={city}
-          setCity={setCity}
-          items={Object.entries(AppData).map((el) => ({
-            key: el[0] as keyof typeof AppData,
-            value: el[1].city,
-          }))}
-          isAll={false}
-        />
+      <section className={styles.ratingToggle}>
+        <Toggle active={toggle} setActive={setToggle} />
       </section>
       <ul className={styles.coffeeList}>
-        {coffeeList
-          .sort((a, b) => b.rating - a.rating)
-          .map((el, ind) => (
-            <Card key={ind} data={el} ind={ind} />
-          ))}
+        {toggle === "main"
+          ? rating.map((el, ind) => <Card key={el.id} data={el} ind={ind} />)
+          : personalRating.map((el, ind) => (
+              <Card key={el.id} data={el} ind={ind} />
+            ))}
       </ul>
     </div>
   );

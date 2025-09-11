@@ -1,26 +1,21 @@
 import { createRoot } from "react-dom/client";
 import "./index.css";
+import "rc-slider/assets/index.css";
 import App from "./App.tsx";
 import { initTGMiniApp } from "./tma-init.ts";
 import { Context } from "./context/context.ts";
-import { CartStore } from "./stores/cart.store.ts";
-import { CatalogStore } from "./stores/catalog.store.ts";
-import { OrderStore } from "./stores/order.store.ts";
-import { ProductStore } from "./stores/product.store.ts";
+import { CafeStore } from "./stores/cafe.store.ts";
 import { UserStore } from "./stores/user.store.ts";
+import { RatingeStore } from "./stores/rating,store.ts";
 
 initTGMiniApp(!!import.meta.env.VITE_DEBUG);
 
-const cartStore = new CartStore();
-const catalogStore = new CatalogStore();
-const orderStore = new OrderStore();
-const productStore = new ProductStore();
+const cafeStore = new CafeStore();
 const userStore = new UserStore();
+const ratingStore = new RatingeStore();
 
 createRoot(document.getElementById("root")!).render(
-  <Context.Provider
-    value={{ cartStore, catalogStore, orderStore, productStore, userStore }}
-  >
+  <Context.Provider value={{ cafeStore, userStore, ratingStore }}>
     <App />
   </Context.Provider>
 );

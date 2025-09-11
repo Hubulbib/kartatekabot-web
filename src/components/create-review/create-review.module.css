@@ -1,0 +1,70 @@
+.sheetContentNewReview > div {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+  margin-bottom: 30px;
+}
+.sheetContentNewReview > div > label {
+  font-weight: 700;
+}
+.sheetContentNewReview > div:first-child > textarea {
+  width: 100%;
+  height: 200px;
+  padding: 12px;
+  box-sizing: border-box;
+  border: 2px solid var(--primary-color);
+  border-radius: 4px;
+  background-color: #f8f8f8;
+  font-size: 14px;
+  resize: none;
+}
+
+.sheetContentNewReview > div:nth-child(2) ul {
+  width: 100%;
+}
+.sheetContentNewReview > div:nth-child(2) li {
+  margin-bottom: 10px;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  background-color: #f8f8f8;
+  width: 100%;
+  padding: 5px 10px;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.sheetContentNewReview > div:nth-child(2) li:last-child {
+  margin-bottom: 0;
+}
+.sheetContentNewReview > div:nth-child(2) li > div {
+  width: 80%;
+}
+
+.sheetContentNewReview > div:nth-child(2) li h4:last-child {
+  font-size: 16px;
+  text-align: center;
+}
+
+.sheetContentNewReviewButton {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+.sheetContentNewReviewButton button {
+  font-size: 30px;
+  cursor: pointer;
+  margin: 0 auto;
+  outline: none;
+  padding: 10px 20px;
+  border: 2px solid var(--primary-color);
+  border-radius: 10px;
+  background-color: var(--extra-color);
+  transition: all 0.2s;
+}
+.sheetContentNewReviewButton button:hover {
+  background-color: var(--background-color);
+  color: var(--accent-color);
+}
