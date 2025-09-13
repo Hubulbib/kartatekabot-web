@@ -1,7 +1,6 @@
 import { makeAutoObservable } from "mobx";
-import type { Cafe, City } from "../entities/types";
+import type { Cafe } from "../entities/types";
 import { CafeService } from "../services/cafe.service";
-import { CityService } from "../services/city.service";
 
 export class RatingeStore {
   rating: (Cafe & { score: number })[] = [];
