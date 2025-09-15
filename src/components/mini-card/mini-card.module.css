@@ -18,7 +18,8 @@
 }
 .cafeMiniCard > img {
   width: 100%;
-  border-radius: 100px;
+  height: fit-content;
+  border-radius: 10px;
 }
 
 .cafeMiniCard > h2 {
