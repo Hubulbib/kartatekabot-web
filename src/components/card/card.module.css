@@ -45,11 +45,13 @@
 }
 .coffeeInfo > h2 {
   color: var(--accent-color);
+  text-align: center;
   font-size: 30px;
 }
 
 .coffeeInfo > h4 {
   color: var(--muted-color);
+  text-align: center;
 }
 .coffeeInfo > h4 > span {
   color: var(--accent-color);
