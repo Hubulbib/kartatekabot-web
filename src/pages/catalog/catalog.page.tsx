@@ -5,10 +5,11 @@ import { Context } from "../../context/context";
 import { Search } from "../../components/search/search.component";
 import { MiniCard } from "../../components/mini-card/mini-card.component";
 import { type Cafe } from "../../entities/types";
+import { Skeleton } from "../../components/skeleton/skeleton.component";
 
 export const CatalogPage = observer(() => {
   const {
-    cafeStore: { catalog, getCatalog },
+    cafeStore: { catalog, getCatalog, isCafeLoading },
     userStore: { user, getUser },
   } = useContext(Context);
 
@@ -49,11 +50,17 @@ export const CatalogPage = observer(() => {
         setValue={setSearchText}
         placeholder="Найдите свою кофейню"
       />
-      <div>
-        {cafeList.map((el) => (
-          <MiniCard data={el} key={el.id} />
-        ))}
-      </div>
+      {isCafeLoading ? (
+        <Skeleton />
+      ) : catalog.length === 0 ? (
+        <span className={styles.catalogNone}>Пока каталог пуст 🥱</span>
+      ) : (
+        <div>
+          {cafeList.map((el) => (
+            <MiniCard data={el} key={el.id} />
+          ))}
+        </div>
+      )}
     </div>
   );
 });

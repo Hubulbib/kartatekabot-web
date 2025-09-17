@@ -12,7 +12,7 @@ export type City = {
 
 export type User = {
   id: number;
-  tgId: number;
+  tgId: string;
   criteria: Criteria;
   city: City;
   cafe: Cafe[];

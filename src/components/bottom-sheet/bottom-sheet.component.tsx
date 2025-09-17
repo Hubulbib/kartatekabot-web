@@ -15,9 +15,18 @@ export const BottomSheet: React.FC<BottomSheetProps> = ({
   const [isClosing, setIsClosing] = useState(false);
 
   useEffect(() => {
-    if (!isOpen) {
+    if (isOpen) {
+      document.body.style.overflow = "hidden"; // Блокируем скролл
+    } else {
       setIsClosing(false);
+      document.body.style.overflow = "auto"; // Восстанавливаем скролл
+      document.body.style.overflowX = "hidden";
     }
+    // Очистка эффекта при размонтировании
+    return () => {
+      document.body.style.overflowY = "auto";
+      document.body.style.overflowX = "hidden";
+    };
   }, [isOpen]);
 
   const handleClose = () => {

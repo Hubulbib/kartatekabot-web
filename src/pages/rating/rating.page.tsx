@@ -4,10 +4,17 @@ import { observer } from "mobx-react-lite";
 import { Context } from "../../context/context";
 import { Card } from "../../components/card/card.component";
 import { Toggle } from "../../components/toggle/toggle.component";
+import { Skeleton } from "../../components/skeleton/skeleton.component";
 
 export const RatingPage = observer(() => {
   const {
-    ratingStore: { getPersonalRating, personalRating, getRating, rating },
+    ratingStore: {
+      getPersonalRating,
+      personalRating,
+      getRating,
+      rating,
+      isRatingLoading,
+    },
     userStore: { user, getUser },
   } = useContext(Context);
 
@@ -29,13 +36,20 @@ export const RatingPage = observer(() => {
       <section className={styles.ratingToggle}>
         <Toggle active={toggle} setActive={setToggle} />
       </section>
-      <ul className={styles.coffeeList}>
-        {toggle === "main"
-          ? rating.map((el, ind) => <Card key={el.id} data={el} ind={ind} />)
-          : personalRating.map((el, ind) => (
-              <Card key={el.id} data={el} ind={ind} />
-            ))}
-      </ul>
+      {isRatingLoading ? (
+        <Skeleton />
+      ) : (toggle === "main" && rating.length === 0) ||
+        (toggle === "personal" && personalRating.length === 0) ? (
+        <span className={styles.ratingNone}>Пока рейтинг пуст 🥱</span>
+      ) : (
+        <ul className={styles.coffeeList}>
+          {toggle === "main"
+            ? rating.map((el, ind) => <Card key={el.id} data={el} ind={ind} />)
+            : personalRating.map((el, ind) => (
+                <Card key={el.id} data={el} ind={ind} />
+              ))}
+        </ul>
+      )}
     </div>
   );
 });

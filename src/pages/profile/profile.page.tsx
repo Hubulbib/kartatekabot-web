@@ -7,6 +7,7 @@ import { useLaunchParams } from "@telegram-apps/sdk-react";
 import ProfileImage from "../../assets/profile.svg";
 import { CriteriaModal } from "../../components/criteria-modal/criteria-modal.component";
 import { initialCriteria, type Criteria } from "../../entities/types";
+import { Skeleton } from "../../components/skeleton/skeleton.component";
 
 export const ProfilePage = observer(() => {
   const { tgWebAppData } = useLaunchParams();
@@ -19,6 +20,7 @@ export const ProfilePage = observer(() => {
       getUser,
       editUserCity,
       editUserCriteria,
+      isUserLoading,
     },
   } = useContext(Context);
 
@@ -48,6 +50,14 @@ export const ProfilePage = observer(() => {
         return { key: key as keyof Criteria, label: found?.label || key };
       });
   };
+
+  if (isUserLoading) {
+    return (
+      <div className={styles.profilePage}>
+        <Skeleton />
+      </div>
+    );
+  }
 
   return (
     <div className={styles.profilePage}>

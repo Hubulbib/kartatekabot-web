@@ -1,8 +1,18 @@
 .sheetContentReview {
-  border: 3px solid var(--extra-color);
+  border: 3px solid var(--muted-color);
   padding: 10px;
   border-radius: 10px;
   margin-bottom: 10px;
+  transition: all 0.1s;
+}
+.sheetContentReview:hover,
+.sheetContentReview:focus {
+  border-color: var(--primary-color);
+}
+
+.sheetContentReviewHead {
+  display: flex;
+  justify-content: space-between;
 }
 
 .sheetContentReviewCriteria {

@@ -36,7 +36,8 @@ export const CriteriaModal = ({
 
     // Очистка эффекта при размонтировании
     return () => {
-      document.body.style.overflow = "auto";
+      document.body.style.overflowY = "auto";
+      document.body.style.overflowX = "hidden";
     };
   }, [isVisible]);
 

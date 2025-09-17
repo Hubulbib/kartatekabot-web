@@ -6,6 +6,7 @@ import { CityService } from "../services/city.service";
 export class UserStore {
   user: User | null = null;
   cities: City[] = [];
+  isUserLoading: boolean = false;
 
   constructor() {
     makeAutoObservable(this, {}, { deep: true });
@@ -15,16 +16,23 @@ export class UserStore {
     this.user = user;
   }
 
+  setIsUserLoading(isLoading: boolean) {
+    this.isUserLoading = isLoading;
+  }
+
   setCityList(cities: City[]) {
     this.cities = cities;
   }
 
   getUser = async () => {
+    this.setIsUserLoading(true);
     try {
       const userData: User = (await UserService.getUserData()).data.data;
       this.setUser(userData);
     } catch (err) {
       throw err;
+    } finally {
+      this.setIsUserLoading(false);
     }
   };
 

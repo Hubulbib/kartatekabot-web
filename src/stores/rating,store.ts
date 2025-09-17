@@ -6,6 +6,8 @@ export class RatingeStore {
   rating: (Cafe & { score: number })[] = [];
   personalRating: (Cafe & { score: number })[] = [];
 
+  isRatingLoading: boolean = false;
+
   constructor() {
     makeAutoObservable(this, {}, { deep: true });
   }
@@ -18,7 +20,12 @@ export class RatingeStore {
     this.personalRating = rating;
   }
 
+  setIsRatingLoading(isLoading: boolean) {
+    this.isRatingLoading = isLoading;
+  }
+
   getRating = async (city: string) => {
+    this.setIsRatingLoading(true);
     try {
       const rating: (Cafe & { score: number })[] = (
         await CafeService.getRating(city)
@@ -26,10 +33,13 @@ export class RatingeStore {
       this.setRating(rating);
     } catch (err) {
       throw err;
+    } finally {
+      this.setIsRatingLoading(false);
     }
   };
 
   getPersonalRating = async (city: string) => {
+    this.setIsRatingLoading(true);
     try {
       const rating: (Cafe & { score: number })[] = (
         await CafeService.getPersonalRating(city)
@@ -37,6 +47,8 @@ export class RatingeStore {
       this.setPersonalRating(rating);
     } catch (err) {
       throw err;
+    } finally {
+      this.setIsRatingLoading(false);
     }
   };
 }
