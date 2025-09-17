@@ -2,17 +2,17 @@ import styles from "./cafe-review.module.css";
 import { formatDate } from "../../utils/helpers";
 import type { Cafe } from "../../entities/types";
 import { NAME_LIST } from "../../utils/const";
-import { DropdownMenu } from "../dropdown-menu/dropdown-menu.component";
-import { useLaunchParams } from "@telegram-apps/sdk-react";
-import { useContext } from "react";
-import { Context } from "../../context/context";
+// import { DropdownMenu } from "../dropdown-menu/dropdown-menu.component";
+// import { useLaunchParams } from "@telegram-apps/sdk-react";
+// import { useContext } from "react";
+// import { Context } from "../../context/context";
 
 export const CafeReview = ({ cafe }: { cafe: Cafe | null }) => {
-  const { tgWebAppData } = useLaunchParams();
+  // const { tgWebAppData } = useLaunchParams();
 
-  const {
-    cafeStore: { editCafeReviw },
-  } = useContext(Context);
+  // const {
+  //   cafeStore: { editCafeReviw },
+  // } = useContext(Context);
 
   return (
     <div className="sheetContent">
