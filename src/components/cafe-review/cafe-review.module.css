@@ -1,38 +1,10 @@
 .sheetContentReview {
-  border: 3px solid var(--muted-color);
-  padding: 10px;
-  border-radius: 10px;
-  margin-bottom: 10px;
-  transition: all 0.1s;
 }
-.sheetContentReview:hover,
-.sheetContentReview:focus {
-  border-color: var(--primary-color);
+.sheetContentReview h2 {
+  margin-bottom: 15px;
 }
-
-.sheetContentReviewHead {
-  display: flex;
-  justify-content: space-between;
-}
-
-.sheetContentReviewCriteria {
-  padding: 10px 0;
-  display: flex;
-  gap: 10px;
-}
-.sheetContentReviewCriteria > div {
-  flex: 1;
+.sheetContentReview > ul {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 5px;
-  background-color: var(--extra-color);
-  padding: 5px;
-  border-radius: 10px;
-}
-.sheetContentReview > p {
-  font-size: 14px;
-  border-radius: 10px;
-  padding: 5px;
-  font-weight: 600;
+  gap: 15px;
 }

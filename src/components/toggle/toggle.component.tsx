@@ -8,18 +8,18 @@ export const Toggle = <T extends string>({
   setActive: React.Dispatch<React.SetStateAction<T>>;
 }) => {
   return (
-    <div className={styles.toggle}>
+    <div className={styles.toggle} data-active={active}>
       <button
         className={active === "main" ? styles.toggleActive : ""}
         onClick={() => setActive("main" as T)}
       >
-        Общий
+        Общий рейтинг
       </button>
       <button
         className={active === "personal" ? styles.toggleActive : ""}
         onClick={() => setActive("personal" as T)}
       >
-        Личный
+        Личный рейтинг
       </button>
     </div>
   );

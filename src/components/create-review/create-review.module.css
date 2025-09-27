@@ -1,3 +1,7 @@
+.sheetContentNewReviewWrapper > h2 {
+  margin-bottom: 20px;
+}
+
 .sheetContentNewReview > div {
   display: flex;
   flex-direction: column;
@@ -13,11 +17,18 @@
   height: 200px;
   padding: 12px;
   box-sizing: border-box;
-  border: 2px solid var(--primary-color);
-  border-radius: 4px;
-  background-color: #f8f8f8;
+  border: 2px solid rgb(var(--bage-color));
+  border-radius: 10px;
+  background-color: rgb(var(--bage-color));
   font-size: 14px;
   resize: none;
+}
+.sheetContentNewReview > div:first-child > textarea::placeholder {
+  color: rgb(var(--extra-color));
+}
+.sheetContentNewReview > div:first-child > textarea:focus {
+  border-color: rgb(var(--extra-color));
+  outline: none;
 }
 
 .sheetContentNewReview > div:nth-child(2) ul {
@@ -25,9 +36,9 @@
 }
 .sheetContentNewReview > div:nth-child(2) li {
   margin-bottom: 10px;
-  border: 2px solid var(--primary-color);
+  border: 2px solid rgb(var(--bage-color));
   border-radius: 10px;
-  background-color: #f8f8f8;
+  background-color: rgb(var(--bage-color));
   width: 100%;
   padding: 5px 10px;
   box-sizing: border-box;
@@ -36,11 +47,18 @@
   justify-content: center;
   align-items: center;
 }
+.sheetContentNewReview > div:nth-child(2) li:focus {
+  border-color: rgb(var(--bage-color));
+}
 .sheetContentNewReview > div:nth-child(2) li:last-child {
   margin-bottom: 0;
 }
 .sheetContentNewReview > div:nth-child(2) li > div {
   width: 80%;
+}
+
+.rc-slider-rail {
+  background-color: rgb(var(--extra-color));
 }
 
 .sheetContentNewReview > div:nth-child(2) li h4:last-child {
@@ -52,19 +70,4 @@
   display: flex;
   justify-content: center;
   width: 100%;
-}
-.sheetContentNewReviewButton button {
-  font-size: 30px;
-  cursor: pointer;
-  margin: 0 auto;
-  outline: none;
-  padding: 10px 20px;
-  border: 2px solid var(--primary-color);
-  border-radius: 10px;
-  background-color: var(--extra-color);
-  transition: all 0.2s;
-}
-.sheetContentNewReviewButton button:hover {
-  background-color: var(--background-color);
-  color: var(--accent-color);
 }

@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from "react";
 import styles from "./rating.module.css";
 import { observer } from "mobx-react-lite";
-import { Context } from "../../context/context";
+import { Context } from "../../context";
 import { Card } from "../../components/card/card.component";
 import { Toggle } from "../../components/toggle/toggle.component";
 import { Skeleton } from "../../components/skeleton/skeleton.component";
@@ -25,7 +25,7 @@ export const RatingPage = observer(() => {
       getRating(user?.city?.name);
       getPersonalRating(user?.city?.name);
     }
-  }, [user]);
+  }, [user?.city]);
 
   useEffect(() => {
     getUser();
@@ -44,9 +44,15 @@ export const RatingPage = observer(() => {
       ) : (
         <ul className={styles.coffeeList}>
           {toggle === "main"
-            ? rating.map((el, ind) => <Card key={el.id} data={el} ind={ind} />)
+            ? rating.map((el, ind) => (
+                <li key={ind}>
+                  <Card key={el.id} data={el} />
+                </li>
+              ))
             : personalRating.map((el, ind) => (
-                <Card key={el.id} data={el} ind={ind} />
+                <li key={ind}>
+                  <Card key={el.id} data={el} />
+                </li>
               ))}
         </ul>
       )}
