@@ -1,10 +1,10 @@
 .search {
   width: 100%;
-  background: var(--primary-color);
-  border: 2px solid var(--accent-color);
+  background: rgb(var(--bage-color));
+  border: none;
   border-radius: 10px;
   padding: 16px 48px 16px 16px;
-  color: var(--accent-color);
+  color: rgb(var(--extra-color));
   font-size: 20px;
   outline: none;
   box-sizing: border-box;
@@ -12,11 +12,11 @@
 }
 
 .search::placeholder {
-  color: grey;
+  color: rgb(var(--extra-color));
   opacity: 1;
 }
 
-.search:focus {
+/* .search:focus {
   background-color: var(--accent-color);
   color: var(--primary-color);
-}
+} */

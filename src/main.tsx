@@ -3,7 +3,7 @@ import "./index.css";
 import "rc-slider/assets/index.css";
 import App from "./App.tsx";
 import { initTGMiniApp } from "./tma-init.ts";
-import { Context } from "./context/context.ts";
+import { Context } from "./context/index.ts";
 import { CafeStore } from "./stores/cafe.store.ts";
 import { UserStore } from "./stores/user.store.ts";
 import { RatingeStore } from "./stores/rating,store.ts";

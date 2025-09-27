@@ -1,0 +1,15 @@
+.colorButton {
+  outline: none;
+  border: 1px solid transparent;
+  background-color: rgb(var(--accent-color));
+  color: rgb(var(--primary-color));
+  padding: 10px 20px;
+  width: 100%;
+  height: min-content;
+  transition: border-color, 0.2s;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.colorButton:hover {
+  border-color: rgb(var(--bage-color));
+}

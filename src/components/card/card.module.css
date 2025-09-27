@@ -1,68 +1,58 @@
 .coffeeCard {
-  margin-bottom: 16px; /* Отступ между карточками */
   max-width: 100%;
-  border: 3px solid var(--muted-color);
   background-color: transparent;
   transition: all 0.2s;
   border-radius: 10px;
   padding: 10px;
   cursor: pointer;
   display: flex;
-  gap: 10px;
+  gap: 20px;
 }
 .coffeeCard:hover,
 .coffeeCard:active {
-  border-color: var(--extra-color);
+  background-color: rgb(var(--bage-color));
 }
 
-.coffeeHead {
+.coffeeAvatar {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.coffeeHead > span {
-  color: var(--extra-color);
-  font-size: 30px;
-  font-weight: 1000;
-}
-.coffeeHead > div {
-  display: flex;
-  align-items: flex-end;
-}
-.coffeeHead > div img {
-  width: 100px;
-  height: 100px;
+.coffeeAvatar img {
+  width: 70px;
+  height: 70px;
   border-radius: 10px;
 }
 
 .coffeeInfo {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: space-between;
+  align-items: flex-start;
   width: 100%;
   gap: 10px;
 }
 .coffeeInfo > h2 {
-  color: var(--accent-color);
+  color: rgb(var(--text-color));
   text-align: center;
-  font-size: 30px;
+  font-size: 24px;
+  font-weight: 600;
 }
-
-.coffeeInfo > h4 {
-  color: var(--muted-color);
-  text-align: center;
+.coffeeInfo > div {
+  display: flex;
+  align-items: center;
+  gap: 5px;
 }
-.coffeeInfo > h4 > span {
-  color: var(--accent-color);
-  padding: 0 0 0 5px;
+.coffeeInfo > div > * {
+  color: rgb(var(--extra-color));
+  font-weight: 500;
 }
-.coffeeScore {
-  background-color: var(--accent-color);
-  width: min-content;
-  padding: 5px 15px;
-  border-radius: 10px;
-  color: var(--primary-color);
-  font-size: 30px;
+.coffeeInfo > div > .coffeeScore {
+  font-size: 18px;
+}
+.coffeeInfo > div > span {
+  font-size: 18px;
+}
+.coffeeInfo > div > h4 > span {
+  color: rgb(var(--extra-color));
 }

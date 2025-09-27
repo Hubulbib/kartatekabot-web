@@ -1,55 +1,33 @@
-import { observer } from "mobx-react-lite";
-import { Select } from "../../components/select/select.component";
-import styles from "./profile.module.css";
 import { useContext, useEffect, useState } from "react";
-import { Context } from "../../context/context";
 import { useLaunchParams } from "@telegram-apps/sdk-react";
+import { observer } from "mobx-react-lite";
+import { Context } from "../../context";
 import ProfileImage from "../../assets/profile.svg";
-import { CriteriaModal } from "../../components/criteria-modal/criteria-modal.component";
-import { initialCriteria, type Criteria } from "../../entities/types";
 import { Skeleton } from "../../components/skeleton/skeleton.component";
+import { SectionButton } from "../../components/section-button/section-button.component";
+import GeoImage from "../../assets/geo.svg";
+import SettingsImage from "../../assets/setting.svg";
+import StartImage from "../../assets/star.svg";
+import styles from "./profile.module.css";
+import { useNavigate } from "react-router-dom";
 
 export const ProfilePage = observer(() => {
+  const navigate = useNavigate();
   const { tgWebAppData } = useLaunchParams();
 
   const {
-    userStore: {
-      cities,
-      getCityList,
-      user,
-      getUser,
-      editUserCity,
-      editUserCriteria,
-      isUserLoading,
-    },
+    userStore: { user, getUser, isUserLoading },
   } = useContext(Context);
 
   const [city, setCity] = useState<string>("");
-  const [isVisibleCriteria, setIsVisibleCriteria] = useState<boolean>(false);
 
   useEffect(() => {
-    getCityList();
     getUser();
   }, []);
 
   useEffect(() => {
     if (!city && user?.city) setCity(user.city.id.toString());
   }, [user]);
-
-  useEffect(() => {
-    if (city && user?.city.id.toString() !== city) {
-      editUserCity(city);
-    }
-  }, [city]);
-
-  const convertToCriteriaOrder = (criteria: Criteria) => {
-    return Object.entries(criteria)
-      .sort(([, a], [, b]) => b - a)
-      .map(([key]) => {
-        const found = initialCriteria.find((item) => item.key === key);
-        return { key: key as keyof Criteria, label: found?.label || key };
-      });
-  };
 
   if (isUserLoading) {
     return (
@@ -64,49 +42,47 @@ export const ProfilePage = observer(() => {
       {tgWebAppData?.user ? (
         <section className={styles.profileUser}>
           <img src={tgWebAppData.user?.photo_url || ProfileImage} alt="Фото" />
-          <h3>
-            {tgWebAppData.user.first_name}{" "}
-            {tgWebAppData.user?.username
-              ? "(" + tgWebAppData.user.username + ")"
-              : ""}
-          </h3>
+          <h3>{tgWebAppData.user.first_name} </h3>
+          {tgWebAppData.user?.username ? (
+            <h4>{tgWebAppData.user.username}</h4>
+          ) : (
+            <></>
+          )}
         </section>
       ) : (
         <></>
       )}
-      <section className={styles.profileCity}>
-        <h3>Ваш город</h3>
-        <Select
-          city={city}
-          setCity={setCity}
-          items={cities.map((el) => ({
-            key: el.id.toString(),
-            value: el.name,
-          }))}
-          isAll={false}
-        />
+      <section className={styles.profileSettings}>
+        <h2>Настройки</h2>
+        <ul>
+          <li>
+            <SectionButton
+              icon={{ image: GeoImage, alt: "Гео" }}
+              title={"Город"}
+              subTitle={user?.city.name || ""}
+              onClick={() => navigate("/choose-city")}
+            />
+          </li>
+          <li>
+            <SectionButton
+              icon={{ image: SettingsImage, alt: "Настройки" }}
+              title={"Приоритеты"}
+              onClick={() => navigate("/choose-priorieties")}
+            />
+          </li>
+        </ul>
       </section>
-      <section className={styles.profileCriteria}>
-        <h3>Ваши предпочтения</h3>
-        <button
-          onClick={() => setIsVisibleCriteria(true)}
-          disabled={!!!user?.criteria}
-        >
-          Изменить
-        </button>
-        {user?.criteria ? (
-          <CriteriaModal
-            isVisible={isVisibleCriteria}
-            onClick={(criteria) => {
-              editUserCriteria(criteria);
-              setIsVisibleCriteria(false);
-            }}
-            style={{ backdropFilter: "blur(5px)" }}
-            init={convertToCriteriaOrder(user.criteria)}
-          />
-        ) : (
-          <></>
-        )}
+      <section className={styles.profileReviews}>
+        <h2>Отзывы</h2>
+        <ul>
+          <li>
+            <SectionButton
+              icon={{ image: StartImage, alt: "Звезда" }}
+              title={"Мои отзывы"}
+              onClick={() => navigate("/my-reviews")}
+            />
+          </li>
+        </ul>
       </section>
     </div>
   );
