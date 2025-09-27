@@ -1,0 +1,26 @@
+.choosePrioritiesInfo {
+  padding: 20px 10px;
+}
+.choosePrioritiesInfo > * {
+  text-align: center;
+}
+.choosePrioritiesInfo h2 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.choosePrioritiesDrag {
+  padding: 20px;
+  border: 3px dotted rgb(var(--extra-color));
+  border-radius: 10px;
+  margin-bottom: 20px;
+}
+
+.criteiaCharacterize {
+  background-color: rgba(var(--bage-color));
+  padding: 10px;
+  font-size: 30px;
+  border-radius: 10px;
+  width: 100%;
+  text-align: center;
+}

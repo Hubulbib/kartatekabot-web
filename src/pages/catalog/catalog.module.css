@@ -1,9 +1,12 @@
-.catalogPage > div {
+.catalogPage {
+  padding: 10px 0;
+}
+
+.catalogPage > ul {
   padding: 20px 0;
-  display: grid;
-  grid-template-columns: repeat(2, 1fr);
-  grid-column-gap: 20px;
-  grid-row-gap: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
 }
 
 .catalogNone {

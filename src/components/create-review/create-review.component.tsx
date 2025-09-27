@@ -2,7 +2,8 @@ import Slider from "rc-slider";
 import { useContext, useState } from "react";
 import styles from "./create-review.module.css";
 import { observer } from "mobx-react-lite";
-import { Context } from "../../context/context";
+import { Context } from "../../context";
+import { ColorButton } from "../color-button/color-button.component";
 
 export const CreateNewReview = observer(
   ({ cafeId, onClose }: { cafeId: number; onClose: () => void }) => {
@@ -25,12 +26,15 @@ export const CreateNewReview = observer(
     };
 
     return (
-      <div className="sheetContent">
+      <div className={styles.sheetContentNewReviewWrapper}>
         <h2>Ваш отзыв</h2>
         <div className={styles.sheetContentNewReview}>
           <div>
-            <label>Опишите ваш опыт</label>
-            <textarea value={text} onChange={(e) => setText(e.target.value)} />
+            <textarea
+              placeholder={"Опишите ваш отзыв"}
+              value={text}
+              onChange={(e) => setText(e.target.value)}
+            />
           </div>
           <div>
             <label>Оцените каждый критерий</label>
@@ -80,9 +84,7 @@ export const CreateNewReview = observer(
             </ul>
           </div>
           <div className={styles.sheetContentNewReviewButton}>
-            <button type="button" onClick={onClickCreateReviewButton}>
-              Создать
-            </button>
+            <ColorButton text={"Создать"} onClick={onClickCreateReviewButton} />
           </div>
         </div>
       </div>

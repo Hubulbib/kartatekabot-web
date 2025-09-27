@@ -1,7 +1,7 @@
 import { observer } from "mobx-react-lite";
 import styles from "./catalog.module.css";
 import { useContext, useEffect, useState } from "react";
-import { Context } from "../../context/context";
+import { Context } from "../../context";
 import { Search } from "../../components/search/search.component";
 import { MiniCard } from "../../components/mini-card/mini-card.component";
 import { type Cafe } from "../../entities/types";
@@ -55,11 +55,13 @@ export const CatalogPage = observer(() => {
       ) : catalog.length === 0 ? (
         <span className={styles.catalogNone}>Пока каталог пуст 🥱</span>
       ) : (
-        <div>
+        <ul>
           {cafeList.map((el) => (
-            <MiniCard data={el} key={el.id} />
+            <li>
+              <MiniCard data={el} key={el.id} />
+            </li>
           ))}
-        </div>
+        </ul>
       )}
     </div>
   );
