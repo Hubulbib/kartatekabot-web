@@ -42,6 +42,10 @@ function App() {
                 <Route path="/cafe/:id" element={<CafePage />} />
                 <Route path="/catalog" element={<CatalogPage />} />
                 <Route path="/choose-city" element={<ChooseCity />} />
+                <Route
+                  path="/choose-priorities"
+                  element={<ChoosePriorities />}
+                />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </main>

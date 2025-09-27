@@ -67,7 +67,7 @@ export const ProfilePage = observer(() => {
             <SectionButton
               icon={{ image: SettingsImage, alt: "Настройки" }}
               title={"Приоритеты"}
-              onClick={() => navigate("/choose-priorieties")}
+              onClick={() => navigate("/choose-priorities")}
             />
           </li>
         </ul>
