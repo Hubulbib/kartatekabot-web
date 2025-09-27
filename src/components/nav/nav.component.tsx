@@ -18,6 +18,10 @@ export const NavBar = () => {
       return "Кафе";
     } else if (location.pathname === "/catalog") {
       return "Каталог";
+    } else if (location.pathname === "/choose-city") {
+      return "Выбор города";
+    } else if (location.pathname === "/choose-priorities") {
+      return "Выбор предпочтений";
     }
     return "";
   };
@@ -41,7 +45,9 @@ export const NavBar = () => {
   } else if (
     location.pathname === "/profile" ||
     location.pathname.includes("/cafe") ||
-    location.pathname === "/catalog"
+    location.pathname === "/catalog" ||
+    location.pathname === "/choose-city" ||
+    location.pathname === "/choose-priorities"
   ) {
     return (
       <nav id="nav" className={styles["nav"]}>
