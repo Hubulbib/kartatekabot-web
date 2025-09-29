@@ -5,7 +5,6 @@ import { Context } from "../../context";
 import { useNavigate, useParams } from "react-router-dom";
 import { BottomSheet } from "../../components/bottom-sheet/bottom-sheet.component";
 import { CreateNewReview } from "../../components/create-review/create-review.component";
-import { CafeReview } from "../../components/cafe-review/cafe-review.component";
 import { ColorButton } from "../../components/color-button/color-button.component";
 import { SectionButton } from "../../components/section-button/section-button.component";
 import GeoImage from "../../assets/geo.svg";
@@ -21,25 +20,6 @@ export const CafePage = observer(() => {
   const {
     cafeStore: { cafe, getCafe },
   } = useContext(Context);
-
-  const openReviewSheet = () => {
-    setSheetContent(<CafeReview cafe={cafe} />);
-    setIsBottomSheetOpen(true);
-  };
-
-  const openLocationSheet = () => {
-    setSheetContent(
-      <div className="sheetContent">
-        <h2>Локации</h2>
-        <ul>
-          {cafe?.address.map((el, ind) => (
-            <li key={ind}>{el}</li>
-          ))}
-        </ul>
-      </div>
-    );
-    setIsBottomSheetOpen(true);
-  };
 
   const openCreateReviewSheet = () => {
     setSheetContent(
@@ -80,14 +60,14 @@ export const CafePage = observer(() => {
             </li>
           ))}
         </ul>
-        {cafe?.address.length || 0 > 2 ? (
+        {(cafe?.address.length || 0) > 2 ? (
           <ColorButton
             styleProps={{
               backgroundColor: "rgb(var(--bage-color))",
               color: "rgb(var(--text-color))",
               fontWeight: 800,
             }}
-            onClick={openLocationSheet}
+            onClick={() => navigate(`/cafe/${id}/locations`)}
             text={"Показать все точки"}
           />
         ) : (
@@ -96,15 +76,19 @@ export const CafePage = observer(() => {
       </section>
       <div className={styles.cafeReview}>
         <h2>Отзывы</h2>
-        <ul>
-          {cafe?.reviews.slice(0, 2).map((el, ind) => (
-            <li key={ind}>
-              <Review key={el.id} review={el} />
-            </li>
-          ))}
-        </ul>
+        {(cafe?.reviews.length || 0) > 2 ? (
+          <ul>
+            {cafe?.reviews.slice(0, 2).map((el, ind) => (
+              <li key={ind}>
+                <Review key={el.id} review={el} />
+              </li>
+            ))}
+          </ul>
+        ) : (
+          <span>Пока тут пусто 🥱 - оставьте свой отзыв</span>
+        )}
         <div>
-          {cafe?.reviews.length || 0 > 2 ? (
+          {(cafe?.reviews.length || 0) > 2 ? (
             <ColorButton
               styleProps={{
                 backgroundColor: "rgb(var(--bage-color))",
@@ -112,7 +96,7 @@ export const CafePage = observer(() => {
                 fontWeight: 800,
               }}
               text={"Показать все отзывы"}
-              onClick={() => openReviewSheet()}
+              onClick={() => navigate(`/cafe/${id}/reviews`)}
             />
           ) : (
             <></>

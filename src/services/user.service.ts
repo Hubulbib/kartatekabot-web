@@ -13,4 +13,8 @@ export class UserService {
   static async editUserCity(city: string) {
     return await $api.patch("/users/city", { city });
   }
+
+  static async getUserReviews() {
+    return await $api.get("/users/reviews");
+  }
 }

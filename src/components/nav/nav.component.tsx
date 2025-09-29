@@ -22,8 +22,19 @@ export const NavBar = () => {
       return "Выбор города";
     } else if (location.pathname === "/choose-priorities") {
       return "Выбор предпочтений";
+    } else if (location.pathname === "/my-reviews") {
+      return "Мои отзывы";
     }
     return "";
+  };
+
+  const getBackNavigation = () => {
+    if (location.pathname === "/profile") {
+      return navigate("/");
+    } else if (location.pathname === "/catalog") {
+      return navigate("/");
+    }
+    return navigate(-1);
   };
 
   if (location.pathname === "/") {
@@ -47,14 +58,15 @@ export const NavBar = () => {
     location.pathname.includes("/cafe") ||
     location.pathname === "/catalog" ||
     location.pathname === "/choose-city" ||
-    location.pathname === "/choose-priorities"
+    location.pathname === "/choose-priorities" ||
+    location.pathname === "/my-reviews"
   ) {
     return (
       <nav id="nav" className={styles["nav"]}>
         <NavButton
           img={BackButtonImage}
           alt={"Назад"}
-          onClick={() => navigate(-1)}
+          onClick={getBackNavigation}
         />
         <h1>{getTitle()}</h1>
       </nav>

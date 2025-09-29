@@ -5,7 +5,6 @@
   color: rgb(var(--primary-color));
   padding: 10px 20px;
   width: 100%;
-  height: min-content;
   transition: border-color, 0.2s;
   border-radius: 10px;
   cursor: pointer;
