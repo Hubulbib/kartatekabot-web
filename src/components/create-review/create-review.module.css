@@ -57,8 +57,39 @@
   width: 80%;
 }
 
-.rc-slider-rail {
-  background-color: rgb(var(--extra-color));
+/* Более специфичные селекторы для rc-slider */
+
+.sheetContentNewReview :global(.rc-slider-rail) {
+  background-color: rgba(var(--extra-color), 0.2);
+}
+
+.sheetContentNewReview :global(.rc-slider-track) {
+  background-color: rgb(var(--accent-color));
+}
+
+.sheetContentNewReview :global(.rc-slider-handle) {
+  width: 20px;
+  height: 20px;
+  margin-top: -8px;
+  background-color: rgb(var(--accent-color));
+  border: 2px solid rgb(var(--accent-color));
+  opacity: 1;
+  cursor: pointer;
+}
+
+.sheetContentNewReview :global(.rc-slider-handle):focus {
+  border-color: rgb(var(--accent-color));
+  box-shadow: 0 0 0 3px rgba(var(--accent-color-rgb), 0.2);
+  outline: none;
+}
+
+.sheetContentNewReview :global(.rc-slider-handle):hover {
+  border-color: rgb(var(--accent-color));
+}
+
+.sheetContentNewReview :global(.rc-slider-handle-active) {
+  border-color: rgb(var(--accent-color));
+  box-shadow: 0 0 0 3px rgba(var(--accent-color-rgb), 0.2);
 }
 
 .sheetContentNewReview > div:nth-child(2) li h4:last-child {

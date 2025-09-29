@@ -28,6 +28,15 @@ export const NavBar = () => {
     return "";
   };
 
+  const getBackNavigation = () => {
+    if (location.pathname === "/profile") {
+      return navigate("/");
+    } else if (location.pathname === "/catalog") {
+      return navigate("/");
+    }
+    return navigate(-1);
+  };
+
   if (location.pathname === "/") {
     return (
       <nav id="nav" className={styles["nav"]}>
@@ -57,7 +66,7 @@ export const NavBar = () => {
         <NavButton
           img={BackButtonImage}
           alt={"Назад"}
-          onClick={() => navigate(-1)}
+          onClick={getBackNavigation}
         />
         <h1>{getTitle()}</h1>
       </nav>
