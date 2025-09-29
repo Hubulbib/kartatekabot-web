@@ -12,6 +12,7 @@ import { CatalogPage } from "./pages/catalog/catalog.page";
 import { ChooseCity } from "./pages/choose-city/choose-city.page";
 import { getTheme, type Themes, ThemeStorageKey } from "./utils/theme";
 import { ChoosePriorities } from "./pages/choose-priorities/choose-priorities.page";
+import { ProfileReviewsPage } from "./pages/profile-reviews/profile-reviews.page";
 
 function App() {
   const {
@@ -39,6 +40,7 @@ function App() {
               <Routes>
                 <Route path="/" element={<RatingPage />} />
                 <Route path="/profile" element={<ProfilePage />} />
+                <Route path="/my-reviews" element={<ProfileReviewsPage />} />
                 <Route path="/cafe/:id" element={<CafePage />} />
                 <Route path="/catalog" element={<CatalogPage />} />
                 <Route path="/choose-city" element={<ChooseCity />} />
