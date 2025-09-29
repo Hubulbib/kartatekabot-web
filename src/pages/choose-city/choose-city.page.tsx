@@ -13,11 +13,12 @@ export const ChooseCity = observer(() => {
   const navigate = useNavigate();
 
   const {
-    userStore: { cities, getCityList, editUserCity },
+    userStore: { user, getUser, cities, getCityList, editUserCity },
   } = useContext(Context);
 
   useEffect(() => {
     getCityList();
+    getUser();
   }, []);
 
   useEffect(() => {
@@ -30,7 +31,7 @@ export const ChooseCity = observer(() => {
 
   const onClickCity = async (cityId: number) => {
     await editUserCity(cityId.toString());
-    navigate("/choose-priorities");
+    user?.criteria ? navigate("/profile") : navigate("/choose-priorities");
   };
 
   return (

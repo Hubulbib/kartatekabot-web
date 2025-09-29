@@ -1,11 +1,12 @@
 import { makeAutoObservable } from "mobx";
 import { UserService } from "../services/user.service";
-import type { City, Criteria, User } from "../entities/types";
+import type { City, Criteria, Review, User } from "../entities/types";
 import { CityService } from "../services/city.service";
 
 export class UserStore {
   user: User | null = null;
   cities: City[] = [];
+  userReviews: Review[] = [];
   isUserLoading: boolean = false;
 
   constructor() {
@@ -22,6 +23,10 @@ export class UserStore {
 
   setCityList(cities: City[]) {
     this.cities = cities;
+  }
+
+  setUserReviews(reviews: Review[]) {
+    this.userReviews = reviews;
   }
 
   getUser = async () => {
@@ -62,6 +67,18 @@ export class UserStore {
       this.setCityList(cities);
     } catch (err) {
       throw err;
+    }
+  };
+
+  getUserReviews = async () => {
+    this.setIsUserLoading(true);
+    try {
+      const reviews: Review[] = (await UserService.getUserReviews()).data.data;
+      this.setUserReviews(reviews);
+    } catch (err) {
+      throw err;
+    } finally {
+      this.setIsUserLoading(false);
     }
   };
 }
