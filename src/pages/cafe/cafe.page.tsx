@@ -76,7 +76,7 @@ export const CafePage = observer(() => {
       </section>
       <div className={styles.cafeReview}>
         <h2>Отзывы</h2>
-        {(cafe?.reviews.length || 0) > 2 ? (
+        {cafe?.reviews.length ? (
           <ul>
             {cafe?.reviews.slice(0, 2).map((el, ind) => (
               <li key={ind}>
