@@ -1,11 +1,16 @@
 import styles from "./profile-review.module.css";
 import ArrowImage from "../../assets/arrow-next.svg";
-import type { Review } from "../../entities/types";
+import type { Cafe, Review } from "../../entities/types";
 import { formatDate } from "../../utils/helpers";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import ShopImage from "../../assets/shop.svg";
 
-export const ProfleReview = ({ review }: { review: Review }) => {
+export const ProfleReview = ({
+  review,
+}: {
+  review: Review & { cafe: Cafe };
+}) => {
   const navigate = useNavigate();
   const [isExpanded, setIsExpanded] = useState(false);
 
@@ -22,7 +27,7 @@ export const ProfleReview = ({ review }: { review: Review }) => {
             navigate(`/cafe/${review.cafe.id}`);
           }}
         >
-          <img src={review.cafe.avatar} alt="Фото" />
+          <img src={review.cafe.avatar || ShopImage} alt="Фото" />
         </div>
         <div>
           <h2>{review.cafe.name}</h2>
@@ -40,22 +45,12 @@ export const ProfleReview = ({ review }: { review: Review }) => {
         <div className={styles.expandedContent}>
           <div className={styles.criteria}>
             <ul>
-              <li>
-                <span>{review.criteria.aroma}</span>
-                <h5>Аромат</h5>
-              </li>
-              <li>
-                <span>{review.criteria.atmosphere}</span>
-                <h5>Атмосфера</h5>
-              </li>
-              <li>
-                <span>{review.criteria.taste}</span>
-                <h5>Вкус</h5>
-              </li>
-              <li>
-                <span>{review.criteria.speed}</span>
-                <h5>Скорость</h5>
-              </li>
+              {review?.criteria?.map((el) => (
+                <li key={el.id}>
+                  <span>{el.mark}</span>
+                  <h5>{el.criteria.name}</h5>
+                </li>
+              ))}
             </ul>
           </div>
           {review.text && (

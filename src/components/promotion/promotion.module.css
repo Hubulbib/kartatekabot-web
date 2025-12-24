@@ -1,0 +1,39 @@
+.promotion {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  background-size: cover;
+  padding: 10px;
+  position: relative;
+  background-color: rgb(var(--bage-color));
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.promotion h3 {
+  flex: 3;
+}
+.promotion > .dates {
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+}
+
+.promotion.img::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 1;
+  pointer-events: none;
+}
+.promotion.img h3 {
+  color: rgb(var(--primary-color));
+  z-index: 3;
+  position: relative;
+  font-size: 14px;
+}
+.promotion.img .dates {
+  display: none;
+}

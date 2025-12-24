@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import type { Cafe } from "../../entities/types";
 import styles from "./card.module.css";
+import ShopImage from "../../assets/shop.svg";
 
 interface CardProps {
   data: Cafe & { score: number };
@@ -15,7 +16,7 @@ export const Card = ({ data }: CardProps) => {
       className={styles.coffeeCard}
     >
       <div className={styles.coffeeAvatar}>
-        <img src={data.avatar} alt="Логотип" />
+        <img src={data.avatar || ShopImage} alt="Логотип" />
       </div>
       <div className={styles.coffeeInfo}>
         <h2>{data.name}</h2>

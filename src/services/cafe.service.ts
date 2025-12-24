@@ -1,4 +1,4 @@
-import type { Criteria } from "../entities/types";
+import type { ReviewCriteriaOrder } from "../entities/types";
 import $api from "../http/http";
 
 export class CafeService {
@@ -22,16 +22,24 @@ export class CafeService {
     return await $api.get(`/cafe/${cafeId}/review`);
   }
 
+  static async getCafeSchedule(cafeId: number) {
+    return await $api.get(`/cafe/${cafeId}/schedules`);
+  }
+
+  static async getCafeSocialNetworks(cafeId: number) {
+    return await $api.get(`/cafe/${cafeId}/social-networks`);
+  }
+
   static async createCafeReview(
     cafeId: number,
-    data: { criteria: Criteria; text: string }
+    data: { criteria: ReviewCriteriaOrder; text: string }
   ) {
     return await $api.post(`/cafe/${cafeId}/review`, data);
   }
 
   static async editCafeReview(
     reviewId: number,
-    data: { criteria?: Criteria; text?: string }
+    data: { criteria?: ReviewCriteriaOrder; text?: string }
   ) {
     return await $api.post(`/cafe//review/${reviewId}`, data);
   }

@@ -1,0 +1,31 @@
+.cafeSchedule {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.cafeSchedule > p {
+  font-size: 16px;
+  background-color: rgb(var(--accent-color));
+  color: rgb(var(--primary-color));
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+.schedule {
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.schedule > li {
+  display: flex;
+  justify-content: space-between;
+  border: 2px solid rgb(var(--accent-color));
+  padding: 10px;
+  border-radius: 10px;
+}
+.schedule > li > span {
+  font-size: 20px;
+}

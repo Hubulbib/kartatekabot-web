@@ -2,8 +2,10 @@ import { useEffect, useRef, useState } from "react";
 import styles from "./dropdown-menu.module.css";
 
 export const DropdownMenu = ({
+  text = "⋮",
   elements,
 }: {
+  text?: string;
   elements: { text: string; onClick: () => void }[];
 }) => {
   const [open, setOpen] = useState<boolean>(false);
@@ -33,7 +35,7 @@ export const DropdownMenu = ({
         onClick={() => setOpen((prev) => !prev)}
         className={styles.dropbtn}
       >
-        ⋮
+        {text}
       </button>
       <ul
         id="myDropdown"

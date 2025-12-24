@@ -1,15 +1,19 @@
+.sheetContentNewReviewWrapper {
+  padding-bottom: 100px;
+}
+
 .sheetContentNewReviewWrapper > h2 {
   margin-bottom: 20px;
 }
 
-.sheetContentNewReview > div {
+.sheetContentNewReview > div:nth-child(2) {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
   gap: 10px;
   margin-bottom: 30px;
 }
-.sheetContentNewReview > div > label {
+.sheetContentNewReview > div:nth-child(2) > label {
   font-weight: 700;
 }
 .sheetContentNewReview > div:first-child > textarea {
@@ -98,7 +102,13 @@
 }
 
 .sheetContentNewReviewButton {
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  gap: 10px;
+}
+
+.sheetContentNewReviewCriteriaAdding {
+  display: grid;
+  grid-template-columns: 4fr 1fr;
   width: 100%;
 }

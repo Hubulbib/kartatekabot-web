@@ -1,0 +1,71 @@
+.businessRequest {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  border-radius: 10px;
+  transition: all 0.2s;
+  cursor: pointer;
+}
+.businessRequest:hover {
+  padding: 10px;
+  background-color: rgb(var(--bage-color));
+}
+.businessRequest .profileMainContent {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.profileMainContent > div:first-child {
+  flex: 1;
+}
+.profileMainContent > div:first-child h2 {
+  font-size: 18px;
+  font-weight: 500;
+}
+.profileMainContent > div:first-child h6 {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgb(var(--extra-color));
+}
+
+.profileMainContent > div:nth-child(2) {
+}
+.profileMainContent > div:nth-child(2) img {
+  height: 30px;
+  width: 30px;
+  transition: transform 0.2s;
+}
+
+.arrowRotated {
+  transform: rotate(90deg);
+}
+
+.expandedContent {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+  padding: 0 0 10px;
+}
+
+.expandedContent > div {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+.expandedContent > div h4 {
+  color: rgb(var(--text-color));
+  font-size: 18px;
+}
+.expandedContent > div span {
+  color: rgba(var(--text-color), 0.8);
+  font-size: 14px;
+}
+.expandedContent > div:nth-child(2) > h4 {
+  background-color: rgb(var(--accent-color));
+  width: fit-content;
+  padding: 10px;
+  color: rgb(var(--primary-color));
+  border-radius: 10px;
+}

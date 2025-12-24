@@ -1,17 +1,23 @@
 .navButton {
-  padding: 10px;
-  border: 2px solid var(--accent-color);
-  border-radius: 10px;
+  padding: 5px 5px;
+  border-radius: 50px;
   transition: background-color 0.2s;
   cursor: pointer;
-}
-
-.navButton:focus,
-.navButton:active {
-  background-color: var(--background-color);
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  align-items: center;
+  justify-content: center;
+  height: 90%;
 }
 
 .navButton > img {
-  height: 30px;
-  width: 30px;
+  height: 20px;
+  width: 20px;
+}
+
+.navButton > span {
+  font-size: 12px;
+  font-weight: 700;
+  color: rgba(var(--text-color), 1);
 }

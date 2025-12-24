@@ -10,3 +10,6 @@ export const NAME_LIST = [
   "Любитель",
   "Эксперт",
 ];
+
+export const INSTAGRAM_BLOCKED_TEXT =
+  "Meta* (продукты Facebook* и Instagram*) признана экстремистской организацией на территории РФ";
