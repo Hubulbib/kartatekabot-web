@@ -1,0 +1,59 @@
+.mediaInput {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: center;
+}
+
+.mediaInput > div:first-child {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}
+
+.mediaInput > div > label {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.imageContainer {
+  width: 100%;
+  position: relative;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.mediaImage {
+  max-width: 100%;
+  max-height: 250px;
+  object-fit: cover;
+  cursor: pointer;
+  border: 5px solid rgba(var(--text-color), 0.1);
+  transition: border-color 0.2s;
+  object-fit: cover;
+}
+
+.mediaImage:hover {
+  border-color: rgb(var(--accent-color));
+}
+
+.hiddenInput {
+  display: none;
+}
+
+.button {
+  margin-top: 8px;
+  padding: 10px 20px;
+  border-radius: 15px;
+  border: 2px solid rgba(var(--text-color), 0.2);
+  background: transparent;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  transition: border-color 0.2s;
+}
+
+.button:hover {
+  border-color: rgb(var(--accent-color));
+}

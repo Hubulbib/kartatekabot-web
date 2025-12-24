@@ -15,6 +15,11 @@ import { ChoosePriorities } from "./pages/choose-priorities/choose-priorities.pa
 import { ProfileReviewsPage } from "./pages/profile-reviews/profile-reviews.page";
 import { CafeLocationsPage } from "./pages/cafe-locations/cafe-locations.page";
 import { CafeReviewsPage } from "./pages/cafe-reviews/cafe-reviews.page";
+import { PostPage } from "./pages/post/post.page";
+import { PromotionPage } from "./pages/promotion/promotion.page";
+import { Header } from "./components/header/header.component";
+import { BusinessRequestPage } from "./pages/business-request/business-request.page";
+import { CreateBusinessRequest } from "./pages/create-business-request/create-business-request.page";
 
 function App() {
   const {
@@ -37,7 +42,7 @@ function App() {
       <HashRouter>
         <ThemeContext.Provider value={{ themeSetting: { theme, setTheme } }}>
           <div className="app" id="app">
-            <NavBar />
+            <Header />
             <main className="main-content">
               <Routes>
                 <Route path="/" element={<RatingPage />} />
@@ -55,10 +60,21 @@ function App() {
                   path="/choose-priorities"
                   element={<ChoosePriorities />}
                 />
+                <Route path="/posts/:id" element={<PostPage />} />
+                <Route path="/promotions/:id" element={<PromotionPage />} />
+                <Route
+                  path="/business/requests/create"
+                  element={<CreateBusinessRequest />}
+                />
+                <Route
+                  path="/business/requests"
+                  element={<BusinessRequestPage />}
+                />
                 <Route path="*" element={<Navigate to="/" replace />} />
               </Routes>
             </main>
           </div>
+          <NavBar />
         </ThemeContext.Provider>
       </HashRouter>
     );

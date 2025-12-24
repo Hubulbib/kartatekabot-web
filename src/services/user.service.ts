@@ -1,4 +1,4 @@
-import type { Criteria } from "../entities/types";
+import type { BusinessRequest, Criteria } from "../entities/types";
 import $api from "../http/http";
 
 export class UserService {
@@ -16,5 +16,15 @@ export class UserService {
 
   static async getUserReviews() {
     return await $api.get("/users/reviews");
+  }
+
+  static async getBusinessRequests() {
+    return await $api.get("/business");
+  }
+
+  static async createBusinessRequest(
+    body: Pick<BusinessRequest, "cafeName" | "cafeUsername" | "socialNetwork">
+  ) {
+    return await $api.post("/business/request", body);
   }
 }

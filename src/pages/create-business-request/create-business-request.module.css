@@ -1,0 +1,17 @@
+.createBusinessRequest {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputs {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.inputs > .select {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+}

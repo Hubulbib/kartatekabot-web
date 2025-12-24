@@ -1,13 +1,25 @@
 import { makeAutoObservable } from "mobx";
 import { UserService } from "../services/user.service";
-import type { City, Criteria, Review, User } from "../entities/types";
+import type {
+  BusinessRequest,
+  Cafe,
+  City,
+  Criteria,
+  Review,
+  User,
+} from "../entities/types";
 import { CityService } from "../services/city.service";
+import { CriteriaService } from "../services/criteria.service";
 
 export class UserStore {
   user: User | null = null;
   cities: City[] = [];
-  userReviews: Review[] = [];
+  criteriaList: Criteria[] = [];
+  userReviews: (Review & { cafe: Cafe })[] = [];
+  businessRequestList: BusinessRequest[] = [];
+
   isUserLoading: boolean = false;
+  isCriteriaLoading: boolean = false;
 
   constructor() {
     makeAutoObservable(this, {}, { deep: true });
@@ -21,12 +33,24 @@ export class UserStore {
     this.isUserLoading = isLoading;
   }
 
+  setIsCriteriaLoading(isLoading: boolean) {
+    this.isCriteriaLoading = isLoading;
+  }
+
   setCityList(cities: City[]) {
     this.cities = cities;
   }
 
-  setUserReviews(reviews: Review[]) {
+  setCriteriaList(criteriaList: Criteria[]) {
+    this.criteriaList = criteriaList;
+  }
+
+  setUserReviews(reviews: (Review & { cafe: Cafe })[]) {
     this.userReviews = reviews;
+  }
+
+  setBusinessRequestList(businessRequestList: BusinessRequest[]) {
+    this.businessRequestList = businessRequestList;
   }
 
   getUser = async () => {
@@ -70,11 +94,54 @@ export class UserStore {
     }
   };
 
+  getCriteriaList = async () => {
+    this.setIsCriteriaLoading(true);
+    try {
+      const criteriaList: Criteria[] = (await CriteriaService.getCriteriaList())
+        .data.data;
+      this.setCriteriaList(criteriaList);
+    } catch (err) {
+      throw err;
+    } finally {
+      this.setIsCriteriaLoading(false);
+    }
+  };
+
   getUserReviews = async () => {
     this.setIsUserLoading(true);
     try {
-      const reviews: Review[] = (await UserService.getUserReviews()).data.data;
+      const reviews: (Review & { cafe: Cafe })[] = (
+        await UserService.getUserReviews()
+      ).data.data;
       this.setUserReviews(reviews);
+    } catch (err) {
+      throw err;
+    } finally {
+      this.setIsUserLoading(false);
+    }
+  };
+
+  getBusinessRequestList = async () => {
+    this.setIsUserLoading(true);
+    try {
+      const businessRequestList: BusinessRequest[] = (
+        await UserService.getBusinessRequests()
+      ).data.data;
+      this.setBusinessRequestList(businessRequestList);
+    } catch (err) {
+      throw err;
+    } finally {
+      this.setIsUserLoading(false);
+    }
+  };
+
+  createBusinessRequest = async (
+    body: Pick<BusinessRequest, "cafeName" | "cafeUsername" | "socialNetwork">
+  ) => {
+    this.setIsUserLoading(true);
+    try {
+      // const businessRequest: BusinessRequest =
+      (await UserService.createBusinessRequest(body)).data.data;
     } catch (err) {
       throw err;
     } finally {

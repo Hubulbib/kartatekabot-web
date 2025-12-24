@@ -1,0 +1,25 @@
+.imageLabelButton {
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  width: max-content;
+  background-color: rgb(var(--bage-color));
+  padding: 10px;
+  border-radius: 10px;
+  transition: all 0.2s;
+}
+.imageLabelButton > img {
+  width: 20px;
+}
+.imageLabelButton > span {
+  font-size: 14px;
+  font-weight: 600;
+}
+
+.imageLabelButton:hover {
+  background-color: rgb(var(--accent-color));
+}
+.imageLabelButton:hover > span {
+  color: rgba(var(--primary-color));
+  font-weight: 500;
+}

@@ -1,75 +1,40 @@
 import { useLocation, useNavigate } from "react-router-dom";
-import styles from "./nav.module.css";
-import MenuImage from "../../assets/menu.svg";
 import { NavButton } from "../nav-button/nav-button.component";
+import ShopImage from "../../assets/shop.svg";
+import StarImage from "../../assets/star.svg";
 import ProfileImage from "../../assets/profile.svg";
-import BackButtonImage from "../../assets/arrow-left.svg";
+import styles from "./nav.module.css";
 
 export const NavBar = () => {
-  const location = useLocation();
   const navigate = useNavigate();
+  const location = useLocation();
 
-  const getTitle = (): string => {
-    if (location.pathname === "/") {
-      return "Рейтинг лучших кофеен";
-    } else if (location.pathname === "/profile") {
-      return "Профиль";
-    } else if (location.pathname.includes("/cafe")) {
-      return "Кафе";
-    } else if (location.pathname === "/catalog") {
-      return "Каталог";
-    } else if (location.pathname === "/choose-city") {
-      return "Выбор города";
-    } else if (location.pathname === "/choose-priorities") {
-      return "Выбор предпочтений";
-    } else if (location.pathname === "/my-reviews") {
-      return "Мои отзывы";
-    }
-    return "";
-  };
-
-  const getBackNavigation = () => {
-    if (location.pathname === "/profile") {
-      return navigate("/");
-    } else if (location.pathname === "/catalog") {
-      return navigate("/");
-    }
-    return navigate(-1);
-  };
-
-  if (location.pathname === "/") {
-    return (
-      <nav id="nav" className={styles["nav"]}>
-        <NavButton
-          img={MenuImage}
-          alt="Каталог"
-          onClick={() => navigate("/catalog")}
-        />
-        <h1>{getTitle()}</h1>
-        <NavButton
-          img={ProfileImage}
-          alt={"Профиль"}
-          onClick={() => navigate("/profile")}
-        />
-      </nav>
-    );
-  } else if (
-    location.pathname === "/profile" ||
-    location.pathname.includes("/cafe") ||
-    location.pathname === "/catalog" ||
-    location.pathname === "/choose-city" ||
-    location.pathname === "/choose-priorities" ||
-    location.pathname === "/my-reviews"
-  ) {
-    return (
-      <nav id="nav" className={styles["nav"]}>
-        <NavButton
-          img={BackButtonImage}
-          alt={"Назад"}
-          onClick={getBackNavigation}
-        />
-        <h1>{getTitle()}</h1>
-      </nav>
-    );
-  }
+  const activeNav =
+    location.pathname === "/"
+      ? "main"
+      : location.pathname === "/catalog"
+      ? "catalog"
+      : "profile";
+  return (
+    <nav id="nav" className={styles["nav"]} data-active={activeNav}>
+      <NavButton
+        img={ShopImage}
+        alt={"Каталог"}
+        onClick={() => navigate("/catalog")}
+        isActive={location.pathname === "/catalog"}
+      />
+      <NavButton
+        img={StarImage}
+        alt={"Рейтинг"}
+        onClick={() => navigate("/")}
+        isActive={location.pathname === "/"}
+      />
+      <NavButton
+        img={ProfileImage}
+        alt={"Профиль"}
+        onClick={() => navigate("/profile")}
+        isActive={location.pathname === "/profile"}
+      />
+    </nav>
+  );
 };

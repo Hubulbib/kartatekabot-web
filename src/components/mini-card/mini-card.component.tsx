@@ -1,6 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styles from "./mini-card.module.css";
 import type { Cafe } from "../../entities/types";
+import ShopImage from "../../assets/shop.svg";
 
 export const MiniCard = ({ data }: { data: Cafe }) => {
   const navigate = useNavigate();
@@ -12,7 +13,7 @@ export const MiniCard = ({ data }: { data: Cafe }) => {
       className={styles.coffeeMiniCard}
     >
       <div className={styles.coffeeMiniAvatar}>
-        <img src={data.avatar} alt="Логотип" />
+        <img src={data.avatar || ShopImage} alt="Логотип" />
       </div>
       <div className={styles.coffeeMiniInfo}>
         <h2>{data.name}</h2>

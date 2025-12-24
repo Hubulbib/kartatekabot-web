@@ -7,27 +7,44 @@ import {
 import styles from "./choose-priorities.module.css";
 import { useContext, useEffect, useState } from "react";
 import {
-  initialCriteria,
   valuesDesc,
   type Criteria,
+  type CriteriaUser,
 } from "../../entities/types";
 import { ColorButton } from "../../components/color-button/color-button.component";
 import { observer } from "mobx-react-lite";
 import { Context } from "../../context";
 import { Skeleton } from "../../components/skeleton/skeleton.component";
 import { useNavigate } from "react-router-dom";
+import { Select } from "../../components/select/select.component";
 
 export const ChoosePriorities = observer(() => {
   const navigate = useNavigate();
-  const [criteriaOrder, setCriteriaOrder] = useState(initialCriteria);
+  const [criteriaOrder, setCriteriaOrder] = useState<
+    { key: string; label: string; weight: number }[]
+  >([]);
+  const [criteria, setCriteria] = useState<string>("");
 
   const {
-    userStore: { getUser, user, isUserLoading, editUserCriteria },
+    userStore: {
+      getUser,
+      user,
+      isUserLoading,
+      editUserCriteria,
+      getCriteriaList,
+      criteriaList,
+      isCriteriaLoading,
+    },
   } = useContext(Context);
 
   useEffect(() => {
     getUser();
+    getCriteriaList();
   }, []);
+
+  useEffect(() => {
+    setCriteria(criteriaList[0]?.name);
+  }, [criteriaList]);
 
   useEffect(() => {
     if (user?.criteria) {
@@ -44,17 +61,18 @@ export const ChoosePriorities = observer(() => {
   };
 
   const criteriaObject = criteriaOrder.reduce(
-    (acc, item, idx) => ({ ...acc, [item.key]: valuesDesc[idx] }),
-    { aroma: 1.0, atmosphere: 1.3, speed: 1.5, taste: 1.7 } as Criteria
+    (acc, item, idx) => ({ ...acc, [item.label]: valuesDesc[idx] }),
+    {} as Criteria
   );
 
-  const convertToCriteriaOrder = (criteria: Criteria) => {
-    return Object.entries(criteria)
-      .sort(([, a], [, b]) => b - a)
-      .map(([key]) => {
-        const found = initialCriteria.find((item) => item.key === key);
-        return { key: key as keyof Criteria, label: found?.label || key };
-      });
+  const convertToCriteriaOrder = (userCriteria: CriteriaUser[]) => {
+    return userCriteria
+      .sort((a, b) => b.weight - a.weight)
+      .map((item) => ({
+        key: item.criteria.id.toString(),
+        label: item.criteria.name,
+        weight: item.weight,
+      }));
   };
 
   const onClickSaveButton = async () => {
@@ -67,7 +85,15 @@ export const ChoosePriorities = observer(() => {
     }
   };
 
-  if (isUserLoading) {
+  const onClickAddCriteria = () => {
+    if (criteriaOrder.find((el) => el.key === criteria)) return;
+    setCriteriaOrder([
+      ...criteriaOrder,
+      { key: criteria, label: criteria, weight: 1 },
+    ]);
+  };
+
+  if (isUserLoading || isCriteriaLoading) {
     return (
       <div className={styles.profilePage}>
         <Skeleton />
@@ -83,6 +109,22 @@ export const ChoosePriorities = observer(() => {
           Переместите блоки ниже так, чтобы выше всех был наиболее важный
           показатель.
         </p>
+      </div>
+      <div className={styles.choosePrioritiesSelect}>
+        <Select
+          city={criteria}
+          setCity={setCriteria}
+          items={criteriaList.map((el) => ({
+            key: el.name,
+            value: el.name,
+          }))}
+          isAll={false}
+        />
+        <ColorButton
+          text={"+"}
+          onClick={onClickAddCriteria}
+          disabled={criteriaOrder.length > 3}
+        />
       </div>
       <div className={styles.choosePrioritiesDrag}>
         <DragDropContext onDragEnd={handleDragEnd}>
@@ -135,7 +177,14 @@ export const ChoosePriorities = observer(() => {
           </Droppable>
         </DragDropContext>
       </div>
-      <ColorButton text={"Сохранить"} onClick={onClickSaveButton} />
+      <div className={styles.choosePrioritiesButton}>
+        <ColorButton
+          styleProps={{ backgroundColor: "rgb(var(--danger-color))" }}
+          text={"Очистить"}
+          onClick={() => setCriteriaOrder([])}
+        />
+        <ColorButton text={"Сохранить"} onClick={onClickSaveButton} />
+      </div>
     </div>
   );
 });

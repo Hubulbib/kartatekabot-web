@@ -4,52 +4,152 @@
   gap: 15px;
 }
 
-.cafeAvatar {
-  width: 200px;
-  margin: 0 auto;
-}
-.cafeAvatar img {
-  width: 100%;
-  border-radius: 30px;
+.header {
+  display: flex;
+  align-items: center;
+  gap: 20px;
 }
 
-.cafeInfo {
+.avatar {
+  width: 120px;
+  height: 120px;
 }
-.cafeInfo h1 {
-  font-size: 26px;
-  text-align: center;
+.avatar img {
+  height: 100%;
+  width: 100%;
+  border-radius: 100%;
+  border: 3px solid rgb(var(--text-color));
+  padding: 5px;
 }
-.cafeInfo h4 {
-  text-align: center;
-  color: rgb(var(--extra-color));
-  margin-bottom: 10px;
+
+.info {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
 }
-.cafeInfo p {
-  text-align: center;
+.info h1 {
+  font-size: 24px;
+}
+.info h5 {
+  font-size: 12px;
+  border-radius: 10px;
+  background-color: rgb(var(--extra-color));
+  color: rgb(var(--primary-color));
+  width: min-content;
+  padding: 5px 10px;
   font-weight: 500;
 }
+.info p {
+  font-size: 12px;
+  font-weight: 500;
+  background-color: rgb(var(--bage-color));
+  color: rgb(var(--text-color));
+  padding: 5px 10px;
+  border-radius: 10px;
+}
 
-.cafeLocation,
-.cafeReview {
-  padding: 10px 0;
+.tabs {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: 1fr;
+  grid-column-gap: 5px;
+  margin: 0 -10px;
+  justify-items: center;
+}
+.tabs > .tab {
+  padding: 5px;
+  display: flex;
+  justify-content: center;
+  border-bottom: 2px solid transparent;
+  transition: border-color 0.2s;
+}
+.tab.active {
+  border-color: rgb(var(--text-color));
+}
+
+.tools {
+  display: flex;
+  gap: 10px;
+}
+
+.posts {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(auto, 1fr));
+  gap: 1px;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.posts img {
+  width: 100%;
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+}
+.createPost {
+  min-height: 150px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(var(--text-color), 0.1);
+  transition: background-color 0.1s;
+}
+.createPost > img {
+  width: 50px;
+  height: 50px;
+  border: 5px dotted rgb(var(--text-color));
+  padding: 5px;
+  border-radius: 100%;
+}
+.createPost:hover {
+  background-color: rgba(var(--text-color), 0.3);
+}
+
+.promotions {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(auto, 1fr));
+  gap: 1px;
+  margin-left: -10px;
+  margin-right: -10px;
+}
+.createPromotion {
+  min-height: 200px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: rgba(var(--text-color), 0.1);
+  transition: background-color 0.1s;
+}
+.createPromotion > img {
+  border: 5px dotted rgb(var(--text-color));
+  padding: 10px;
+  border-radius: 100%;
+}
+.createPromotion:hover {
+  background-color: rgba(var(--text-color), 0.3);
+}
+
+.reviews {
   display: flex;
   flex-direction: column;
   gap: 10px;
 }
 
-.cafeLocation h2,
-.cafeReview h2 {
-  font-size: 20px;
+.createReview > button {
+  width: 100%;
+  padding: 10px 5px;
+  outline: none;
+  background-color: rgb(var(--accent-color));
+  border-radius: 10px;
+  border: none;
+  color: rgb(var(--primary-color));
+  border: 2px solid transparent;
+  transition: all 0.1s;
+  margin-bottom: 10px;
 }
-
-.cafeReview ul {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-}
-
-.cafeReview > div {
-  display: flex;
-  gap: 20px;
-  align-items: stretch;
+.createReview > button:hover {
+  background-color: transparent;
+  color: rgb(var(--text-color));
+  border-color: rgb(var(--accent-color));
 }

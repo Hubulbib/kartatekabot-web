@@ -8,6 +8,8 @@ import { SectionButton } from "../../components/section-button/section-button.co
 import GeoImage from "../../assets/geo.svg";
 import SettingsImage from "../../assets/setting.svg";
 import StartImage from "../../assets/star.svg";
+import PriceTagImage from "../../assets/price-tag.svg";
+import PlusImage from "../../assets/plus.svg";
 import styles from "./profile.module.css";
 import { useNavigate } from "react-router-dom";
 
@@ -59,7 +61,7 @@ export const ProfilePage = observer(() => {
             <SectionButton
               icon={{ image: GeoImage, alt: "Гео" }}
               title={"Город"}
-              subTitle={user?.city.name || ""}
+              subTitle={user?.city?.name || ""}
               onClick={() => navigate("/choose-city")}
             />
           </li>
@@ -80,6 +82,23 @@ export const ProfilePage = observer(() => {
               icon={{ image: StartImage, alt: "Звезда" }}
               title={"Мои отзывы"}
               onClick={() => navigate("/my-reviews")}
+            />
+          </li>
+        </ul>
+      </section>
+      <section className={styles.profileReviews}>
+        <h2>Для бизнеса</h2>
+        <ul>
+          <li>
+            <SectionButton
+              icon={{ image: PriceTagImage, alt: "Бизнес" }}
+              title={"Мои заявки"}
+              onClick={() => navigate("/business/requests")}
+            />
+            <SectionButton
+              icon={{ image: PlusImage, alt: "Заявка" }}
+              title={"Заявка на доступ к бизнес-панели"}
+              onClick={() => navigate("/business/requests/create")}
             />
           </li>
         </ul>

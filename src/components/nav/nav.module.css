@@ -1,23 +1,60 @@
 .nav {
-  width: 100%;
-  text-align: center;
-  padding: 10px;
+  border-radius: 50px;
+  background-color: rgba(var(--primary-color), 0.3);
+  backdrop-filter: blur(10px);
+  position: fixed;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  right: 0;
+  width: 70%;
+  margin: 10px 0;
+  z-index: 10000;
+  padding: 5px;
   display: grid;
-  grid-template-columns: 1fr 6fr 1fr;
+  justify-items: stretch;
+  grid-template-columns: repeat(3, 1fr);
   grid-template-rows: 1fr;
   grid-column-gap: 20px;
-  grid-row-gap: 0px;
   align-items: center;
-  margin-bottom: 10px;
-  box-sizing: border-box;
+  height: 70px;
+  box-shadow: 0 8px 32px rgba(var(--text-color), 0.1);
+  overflow: visible;
+}
+
+.nav::before {
+  content: "";
+  position: absolute;
+  left: 5px;
+  top: 50%;
+  transform: translateY(-50%);
+  height: 80%;
+
+  width: calc((100% - 10px - 40px) / 3);
+  /* 10px — padding (5 слева + 5 справа)
+     40px — два gap по 20px */
+
+  background-color: rgba(var(--text-color), 0.1);
+  border-radius: 30px;
+
+  transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+  z-index: 0;
+  pointer-events: none;
+}
+
+.nav[data-active="catalog"]::before {
+  transform: translate(0, -50%);
+}
+
+.nav[data-active="main"]::before {
+  transform: translate(calc(100% + 20px), -50%);
+}
+
+.nav[data-active="profile"]::before {
+  transform: translate(calc(200% + 40px), -50%);
 }
 
 .nav > img {
   width: 100px;
   height: 30px;
-}
-
-.nav > h1 {
-  color: var(--secondary-color);
-  font-size: 20px;
 }

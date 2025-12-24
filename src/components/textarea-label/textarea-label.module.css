@@ -1,0 +1,28 @@
+.textareaLabel {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.textareaLabel > label {
+  font-size: 18px;
+  font-weight: 600;
+}
+
+.textareaLabel > textarea {
+  padding: 15px 10px;
+  border-radius: 15px;
+  border: 2px solid rgba(var(--text-color), 0.2);
+  font-weight: 400;
+  font-size: 18px;
+  max-width: 100%;
+  min-height: 100px;
+  resize: none;
+  overflow: hidden;
+  box-sizing: border-box;
+  outline: none;
+}
+
+.textareaLabel > textarea:focus {
+  border-color: rgb(var(--accent-color));
+}
