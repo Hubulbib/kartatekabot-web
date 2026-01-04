@@ -187,39 +187,40 @@ export const CafePage = observer(() => {
             <Skeleton />
           )
         ) : null}
-        {activeTab === "reviews" ? (
-          cafeReviews.length === 0 ? (
-            <h2 style={{ textAlign: "center" }}>Пока здесь пусто</h2>
-          ) : (
-            <section className={styles.reviews}>
-              {!cafeReviews.find((el) => el.userId === user?.id) ? (
-                <div className={styles.createReview}>
-                  <button
-                    onClick={() =>
-                      id
-                        ? setBottomSheet(
-                            <CreateNewReview
-                              cafeId={+id}
-                              onClose={() => setBottomSheet(null)}
-                            />
-                          )
-                        : null
-                    }
-                  >
-                    + Оставить отзыв
-                  </button>
-                </div>
-              ) : (
-                <></>
-              )}
-              {!isCafeLoading ? (
-                cafeReviews.map((el) => <Review key={el.id} review={el} />)
-              ) : (
-                <Skeleton />
-              )}
-            </section>
-          )
-        ) : null}
+        {activeTab === "reviews" && (
+          <section className={styles.reviews}>
+            {/* Проверяем, есть ли у пользователя отзыв на это кафе */}
+            {!cafeReviews.find((el) => el.userId === user?.id) && (
+              <div className={styles.createReview}>
+                <button
+                  onClick={() =>
+                    id
+                      ? setBottomSheet(
+                          <CreateNewReview
+                            cafeId={+id}
+                            onClose={() => setBottomSheet(null)}
+                          />
+                        )
+                      : null
+                  }
+                >
+                  + Оставить отзыв
+                </button>
+              </div>
+            )}
+
+            {/* Отображаем список отзывов или сообщение об их отсутствии */}
+            {cafeReviews.length === 0 ? (
+              <div className={styles.reviewsEmpty}>
+                <h2 style={{ textAlign: "center" }}>Пока здесь пусто</h2>
+              </div>
+            ) : !isCafeLoading ? (
+              cafeReviews.map((el) => <Review key={el.id} review={el} />)
+            ) : (
+              <Skeleton />
+            )}
+          </section>
+        )}
       </div>
       <BottomSheet isOpen={!!bottomSheet} onClose={() => setBottomSheet(null)}>
         {bottomSheet}
