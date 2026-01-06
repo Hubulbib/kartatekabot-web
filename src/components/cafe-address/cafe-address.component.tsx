@@ -22,7 +22,7 @@ export const CafeAddress = ({
               onClick={() =>
                 open(
                   `https://yandex.ru/maps/?text=${
-                    city?.name ? `${city.name} ` : "" + +el
+                    city?.name ? `${city.name} ` : "" + el
                   }`
                 )
               }
