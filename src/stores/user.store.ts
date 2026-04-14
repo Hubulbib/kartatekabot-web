@@ -11,6 +11,14 @@ import type {
 import { CityService } from "../services/city.service";
 import { CriteriaService } from "../services/criteria.service";
 
+/**
+ * Хранилище пользовательских данных клиентского приложения.
+ *
+ * Отвечает за:
+ * - загрузку и кэширование профиля пользователя;
+ * - получение справочных данных (города, критерии);
+ * - операции редактирования профиля и пользовательских сущностей.
+ */
 export class UserStore {
   user: User | null = null;
   cities: City[] = [];
@@ -25,6 +33,7 @@ export class UserStore {
     makeAutoObservable(this, {}, { deep: true });
   }
 
+  /** Обновляет состояние профиля пользователя в store. */
   setUser(user: User) {
     this.user = user;
   }
@@ -53,6 +62,10 @@ export class UserStore {
     this.businessRequestList = businessRequestList;
   }
 
+  /**
+   * Загружает профиль текущего пользователя.
+   * Использует флаг isUserLoading для индикации состояния запроса в UI.
+   */
   getUser = async () => {
     this.setIsUserLoading(true);
     try {
@@ -94,6 +107,10 @@ export class UserStore {
     }
   };
 
+  /**
+   * Получает список критериев для оценки заведений.
+   * Используется при формировании отзыва и пользовательских предпочтений.
+   */
   getCriteriaList = async () => {
     this.setIsCriteriaLoading(true);
     try {
@@ -107,6 +124,7 @@ export class UserStore {
     }
   };
 
+  /** Загружает список отзывов, созданных текущим пользователем. */
   getUserReviews = async () => {
     this.setIsUserLoading(true);
     try {
@@ -121,6 +139,7 @@ export class UserStore {
     }
   };
 
+  /** Загружает список заявок пользователя на подтверждение бизнеса. */
   getBusinessRequestList = async () => {
     this.setIsUserLoading(true);
     try {
@@ -135,6 +154,10 @@ export class UserStore {
     }
   };
 
+  /**
+   * Создает заявку на подтверждение принадлежности заведения владельцу.
+   * @param body Минимальный набор реквизитов для идентификации заведения.
+   */
   createBusinessRequest = async (
     body: Pick<BusinessRequest, "cafeName" | "cafeUsername" | "socialNetwork">
   ) => {

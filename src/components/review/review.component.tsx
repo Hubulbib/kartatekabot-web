@@ -8,10 +8,21 @@ import { DropdownMenu } from "../dropdown-menu/dropdown-menu.component";
 import { BottomSheet } from "../bottom-sheet/bottom-sheet.component";
 import { CreateReport } from "../create-report/create-report.component";
 
+/**
+ * Компонент отображения одного пользовательского отзыва.
+ *
+ * Содержит:
+ * - псевдоним автора (для визуальной анонимизации в интерфейсе),
+ * - дату публикации,
+ * - список оценок по критериям,
+ * - текст отзыва и сценарий отправки жалобы.
+ */
 export const Review = ({ review }: { review: ReviewType }) => {
+  // Имя выбирается случайно из предопределенного набора для унифицированного отображения в ленте.
   const [name, _] = useState(
     NAME_LIST[Math.floor(Math.random() * NAME_LIST.length)]
   );
+  // BottomSheet хранит активный контент модального окна (например, форму жалобы).
   const [bottomSheet, setBottomSheet] = useState<any>(null);
 
   return (

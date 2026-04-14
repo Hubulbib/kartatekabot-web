@@ -8,6 +8,10 @@ import type {
 } from "../entities/types";
 import { CafeService } from "../services/cafe.service";
 
+/**
+ * Хранилище данных витрины заведений:
+ * каталог, карточка кафе, расписание, контакты и отзывы.
+ */
 export class CafeStore {
   catalog: Cafe[] = [];
   cafe: Cafe | null = null;
@@ -21,6 +25,7 @@ export class CafeStore {
     makeAutoObservable(this, {}, { deep: true });
   }
 
+  /** Обновляет список кафе для текущего города. */
   setCatalog(catalog: Cafe[]) {
     this.catalog = catalog;
   }
@@ -45,6 +50,10 @@ export class CafeStore {
     this.isCafeLoading = isLoading;
   }
 
+  /**
+   * Загружает карточку заведения по идентификатору.
+   * Используется на странице детального просмотра кафе.
+   */
   getCafe = async (cafeId: number) => {
     this.setIsCafeLoading(true);
     try {
@@ -57,6 +66,7 @@ export class CafeStore {
     }
   };
 
+  /** Загружает расписание работы заведения. */
   getCafeSchedule = async (cafeId: number) => {
     this.setIsCafeLoading(true);
     try {
@@ -70,6 +80,7 @@ export class CafeStore {
     }
   };
 
+  /** Загружает отзывы конкретного заведения. */
   getCafeReviews = async (cafeId: number) => {
     this.setIsCafeLoading(true);
     try {
@@ -98,6 +109,7 @@ export class CafeStore {
     }
   };
 
+  /** Загружает каталог заведений в выбранном городе. */
   getCatalog = async (city: string) => {
     this.setIsCafeLoading(true);
     try {
@@ -110,6 +122,9 @@ export class CafeStore {
     }
   };
 
+  /**
+   * Создает отзыв пользователя и при необходимости обновляет карточку заведения.
+   */
   createCafeReviw = async (
     cafeId: number,
     data: { criteria: ReviewCriteriaOrder; text: string }
@@ -123,6 +138,7 @@ export class CafeStore {
     }
   };
 
+  /** Обновляет существующий отзыв пользователя для заведения. */
   editCafeReviw = async (
     reviewId: number,
     data: { criteria: ReviewCriteriaOrder; text: string }

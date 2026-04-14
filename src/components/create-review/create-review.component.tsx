@@ -7,6 +7,12 @@ import { ColorButton } from "../color-button/color-button.component";
 import { Select } from "../select/select.component";
 import type { ReviewCriteriaOrder } from "../../entities/types";
 
+/**
+ * Форма создания пользовательского отзыва о заведении.
+ *
+ * Пользователь вводит текст и добавляет набор критериев с оценками,
+ * после чего отзыв отправляется на сервер.
+ */
 export const CreateNewReview = observer(
   ({ cafeId, onClose }: { cafeId: number; onClose: () => void }) => {
     const [text, setText] = useState("");
@@ -26,6 +32,9 @@ export const CreateNewReview = observer(
       setCriteria(criteriaList[0]?.name);
     }, [criteriaList]);
 
+    /**
+     * Отправляет сформированный отзыв и закрывает BottomSheet.
+     */
     const onClickCreateReviewButton = async () => {
       await createCafeReviw(cafeId, {
         criteria: criteriaOrder,
@@ -60,7 +69,9 @@ export const CreateNewReview = observer(
               <ColorButton
                 text={"+"}
                 onClick={() => {
+                  // Ограничение ТЗ: не более 4 критериев в одном отзыве.
                   if (criteriaOrder.length > 3) return;
+                  // Защита от повторного добавления одного и того же критерия.
                   if (
                     criteriaOrder.some(
                       (item) => Object.keys(item)[0] === criteria

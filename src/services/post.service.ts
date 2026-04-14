@@ -1,6 +1,9 @@
 import type { Post } from "../entities/types";
 import $api from "../http/http";
 
+/**
+ * Сервис API для работы с публикациями в клиентском приложении.
+ */
 export class PostService {
   static async getPostList(cafeId: number) {
     return await $api.get(`/cafe/${cafeId}/posts`);
@@ -11,6 +14,7 @@ export class PostService {
     body: Omit<Post, "id" | "createdAt" | "updatedAt" | "cafeId" | "media">,
     files: File[]
   ) {
+    // Используем multipart/form-data для передачи текста и файлов.
     const formData = new FormData();
     for (const key of Object.keys(body) as Array<keyof typeof body>) {
       const value = body[key];
@@ -34,6 +38,7 @@ export class PostService {
     body: Omit<Post, "id" | "createdAt" | "updatedAt" | "cafeId" | "media">,
     files: File[]
   ) {
+    // Формирование тела запроса аналогично созданию поста.
     const formData = new FormData();
     for (const key of Object.keys(body) as Array<keyof typeof body>) {
       const value = body[key];

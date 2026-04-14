@@ -2,6 +2,9 @@ import { makeAutoObservable } from "mobx";
 import type { Promotion } from "../entities/types";
 import { PromotionService } from "../services/promotion.service";
 
+/**
+ * Хранилище акций: список, активная акция и состояние загрузки.
+ */
 export class PromotionStore {
   promotionList: Promotion[] = [];
   promotion: Promotion | null = null;
@@ -23,6 +26,7 @@ export class PromotionStore {
     this.isPromotionLoading = loading;
   };
 
+  /** Загружает список акций заведения. */
   getPromotionList = async (cafeId: number) => {
     this.setIsPromotionLoading(true);
     try {
@@ -36,6 +40,7 @@ export class PromotionStore {
     }
   };
 
+  /** Загружает конкретную акцию по идентификатору. */
   getPromotion = async (cafeId: number, promotionId: number) => {
     this.setIsPromotionLoading(true);
     try {
@@ -50,6 +55,7 @@ export class PromotionStore {
     }
   };
 
+  /** Создает новую акцию и добавляет ее в начало списка. */
   createPromotion = async (
     cafeId: number,
     body: Omit<
@@ -71,6 +77,7 @@ export class PromotionStore {
     }
   };
 
+  /** Обновляет существующую акцию и синхронизирует ее в store. */
   editPromotion = async (
     cafeId: number,
     promotionId: number,
@@ -93,6 +100,7 @@ export class PromotionStore {
     }
   };
 
+  /** Удаляет акцию и удаляет ее из локального списка. */
   deletePromotion = async (cafeId: number, promotionId: number) => {
     this.setIsPromotionLoading(true);
     try {

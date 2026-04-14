@@ -2,6 +2,9 @@ import { makeAutoObservable } from "mobx";
 import type { Post } from "../entities/types";
 import { PostService } from "../services/post.service";
 
+/**
+ * Хранилище постов: список, выбранный пост и индикатор загрузки.
+ */
 export class PostStore {
   constructor() {
     makeAutoObservable(this, {}, { deep: true });
@@ -23,6 +26,7 @@ export class PostStore {
     this.isPostLoading = loading;
   };
 
+  /** Загружает список постов выбранного заведения. */
   getPostList = async (cafeId: number) => {
     this.setIsPostLoading(true);
     try {
@@ -35,6 +39,7 @@ export class PostStore {
     }
   };
 
+  /** Загружает один пост по id для детальной страницы. */
   getPost = async (cafeId: number, postId: number) => {
     this.setIsPostLoading(true);
     try {
@@ -47,6 +52,7 @@ export class PostStore {
     }
   };
 
+  /** Создает пост и добавляет его в начало списка postList. */
   createPost = async (
     cafeId: number,
     body: Omit<Post, "id" | "createdAt" | "updatedAt" | "cafeId" | "media">,
@@ -64,6 +70,7 @@ export class PostStore {
     }
   };
 
+  /** Обновляет пост и синхронизирует объект post в store. */
   editPost = async (
     cafeId: number,
     postId: number,
@@ -82,6 +89,7 @@ export class PostStore {
     }
   };
 
+  /** Удаляет пост и пересобирает локальный список без удаленного элемента. */
   deletePost = async (cafeId: number, postId: number) => {
     this.setIsPostLoading(true);
     try {

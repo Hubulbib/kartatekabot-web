@@ -1,6 +1,9 @@
 import type { Promotion } from "../entities/types";
 import $api from "../http/http";
 
+/**
+ * Сервис API для работы с акциями заведения.
+ */
 export class PromotionService {
   static async getPromotionList(cafeId: number) {
     return await $api.get(`/cafe/${cafeId}/promotions`);
@@ -14,6 +17,7 @@ export class PromotionService {
     > & { dateStart?: Date },
     files: File[]
   ) {
+    // multipart-form обеспечивает передачу метаданных акции и медиа в одном запросе.
     const formData = new FormData();
     for (const key of Object.keys(body) as Array<keyof typeof body>) {
       const value = body[key];
@@ -40,6 +44,7 @@ export class PromotionService {
     > & { dateStart?: Date },
     files: File[]
   ) {
+    // На этапе редактирования используется тот же протокол подготовки FormData.
     const formData = new FormData();
     for (const key of Object.keys(body) as Array<keyof typeof body>) {
       const value = body[key];

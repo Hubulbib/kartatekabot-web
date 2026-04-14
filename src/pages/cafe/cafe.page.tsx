@@ -20,6 +20,12 @@ import { Context } from "../../context";
 import { Skeleton } from "../../components/skeleton/skeleton.component";
 import { CreateNewReview } from "../../components/create-review/create-review.component";
 
+/**
+ * Страница карточки заведения для пользовательского приложения.
+ *
+ * Объединяет загрузку всех связанных данных (кафе, акции, посты, отзывы,
+ * расписание и контакты), а также управление вкладками и BottomSheet-окнами.
+ */
 export const CafePage = observer(() => {
   const navigate = useNavigate();
   const { id } = useParams();
@@ -47,6 +53,7 @@ export const CafePage = observer(() => {
   const [bottomSheet, setBottomSheet] = useState<any>(null);
 
   useEffect(() => {
+    // При смене id синхронно загружаем все данные, необходимые для экрана кафе.
     if (id && +id && !isNaN(+id)) {
       getCafe(+id);
       getCafeReviews(+id);
@@ -189,7 +196,7 @@ export const CafePage = observer(() => {
         ) : null}
         {activeTab === "reviews" && (
           <section className={styles.reviews}>
-            {/* Проверяем, есть ли у пользователя отзыв на это кафе */}
+            {/* Кнопка создания отзыва доступна только если пользователь еще не оставлял отзыв. */}
             {!cafeReviews.find((el) => el.userId === user?.id) && (
               <div className={styles.createReview}>
                 <button
@@ -209,7 +216,7 @@ export const CafePage = observer(() => {
               </div>
             )}
 
-            {/* Отображаем список отзывов или сообщение об их отсутствии */}
+            {/* Вкладка отзывов: список либо пустое состояние. */}
             {cafeReviews.length === 0 ? (
               <div className={styles.reviewsEmpty}>
                 <h2 style={{ textAlign: "center" }}>Пока здесь пусто</h2>
